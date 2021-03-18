@@ -20,6 +20,9 @@ namespace FriendRecommendation
         //contains all relation e.g. [A, B] -> A friend of B
         List<string[]> relation = new List<string[]>();
 
+        // num of relation
+        int nRelations;
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -59,23 +62,37 @@ namespace FriendRecommendation
                     line = sr.ReadLine();
 
                     // skip 1st line (num of relation)
-                    if (line != null && lineNum!=0)
+                    if (line != null)
                     {
-                        // split every line read
-                        splitLine = line.Split(' ');
+                        if(lineNum != 0)
+                        {
+                            // split every line read
+                            splitLine = line.Split(' ');
 
-                        // add unique account to `account` and "Choose Account" dropdown
-                        if (!account.Contains(splitLine[0])) {
-                            account.Add(splitLine[0]);
-                            ChooseAccount.Items.Add(splitLine[0]);
+                            // add unique account to `account` and "Choose Account" dropdown
+                            if (!account.Contains(splitLine[0]))
+                            {
+                                account.Add(splitLine[0]);
+                                ChooseAccount.Items.Add(splitLine[0]);
+                            }
+                            // add all relation to `relation`
+                            relation.Add(splitLine);
                         }
-                        // add all relation to `relation`
-                        relation.Add(splitLine);
+                        else
+                        {
+                            // num of relation
+                            nRelations = Convert.ToInt32(line);
+                        }
                     }
                     lineNum++;
                 }
                 // display filename
                 GraphFileName.Text = Path.GetFileName(openFile.FileName);
+            }
+            // failed to open file
+            else
+            {
+                MessageBox.Show("Choose .txt File", "Failed to Open File",  MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
