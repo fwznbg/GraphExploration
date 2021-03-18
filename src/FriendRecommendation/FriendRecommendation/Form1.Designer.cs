@@ -72,6 +72,7 @@
             this.explorefriend = new System.Windows.Forms.ComboBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -130,15 +131,11 @@
             this.ChooseAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChooseAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.ChooseAccount.FormattingEnabled = true;
-            this.ChooseAccount.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D"});
             this.ChooseAccount.Location = new System.Drawing.Point(36, 161);
             this.ChooseAccount.Name = "ChooseAccount";
             this.ChooseAccount.Size = new System.Drawing.Size(126, 24);
             this.ChooseAccount.TabIndex = 0;
+            this.ChooseAccount.SelectedIndexChanged += new System.EventHandler(this.ChooseAccount_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -190,14 +187,12 @@
             // GraphFileName
             // 
             this.GraphFileName.AutoSize = true;
-            this.GraphFileName.Dock = System.Windows.Forms.DockStyle.Top;
             this.GraphFileName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GraphFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.GraphFileName.Location = new System.Drawing.Point(0, 0);
             this.GraphFileName.Name = "GraphFileName";
-            this.GraphFileName.Size = new System.Drawing.Size(81, 23);
+            this.GraphFileName.Size = new System.Drawing.Size(0, 23);
             this.GraphFileName.TabIndex = 4;
-            this.GraphFileName.Text = "Graph.txt";
             // 
             // bfsbfspanel
             // 
@@ -559,11 +554,6 @@
             this.explorefriend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.explorefriend.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.explorefriend.FormattingEnabled = true;
-            this.explorefriend.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D"});
             this.explorefriend.Location = new System.Drawing.Point(4, 26);
             this.explorefriend.Name = "explorefriend";
             this.explorefriend.Size = new System.Drawing.Size(176, 24);
@@ -591,6 +581,10 @@
             this.CloseButton.TabIndex = 9;
             this.CloseButton.Text = "X";
             this.CloseButton.UseVisualStyleBackColor = true;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -690,6 +684,7 @@
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Button submit;
         private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
