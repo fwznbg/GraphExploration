@@ -72,7 +72,7 @@ namespace DarjoWarehouseProject
             this.panel11 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.Graph = new System.Windows.Forms.Panel();
+            this.panelGraph = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -222,10 +222,10 @@ namespace DarjoWarehouseProject
             this.panel12.Controls.Add(this.submit);
             this.panel12.Controls.Add(this.xplore);
             this.panel12.Controls.Add(this.explorefriend);
-            this.panel12.Location = new System.Drawing.Point(734, 464);
+            this.panel12.Location = new System.Drawing.Point(734, 449);
             this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(183, 91);
+            this.panel12.Size = new System.Drawing.Size(183, 102);
             this.panel12.TabIndex = 13;
             // 
             // submit
@@ -236,7 +236,7 @@ namespace DarjoWarehouseProject
             this.submit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.submit.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.submit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.submit.Location = new System.Drawing.Point(89, 50);
+            this.submit.Location = new System.Drawing.Point(91, 60);
             this.submit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(91, 38);
@@ -316,7 +316,7 @@ namespace DarjoWarehouseProject
             // panel3
             // 
             this.panel3.Controls.Add(this.flowLayoutPanel1);
-            this.panel3.Controls.Add(this.Graph);
+            this.panel3.Controls.Add(this.panelGraph);
             this.panel3.Location = new System.Drawing.Point(246, 95);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
@@ -598,15 +598,15 @@ namespace DarjoWarehouseProject
             this.label16.TabIndex = 0;
             this.label16.Text = "B (A->C->B, 1st Degree)";
             // 
-            // Graph
+            // panelGraph
             // 
-            this.Graph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.Graph.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Graph.Location = new System.Drawing.Point(0, 0);
-            this.Graph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Graph.Name = "Graph";
-            this.Graph.Size = new System.Drawing.Size(475, 332);
-            this.Graph.TabIndex = 2;
+            this.panelGraph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panelGraph.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelGraph.Location = new System.Drawing.Point(0, 0);
+            this.panelGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelGraph.Name = "panelGraph";
+            this.panelGraph.Size = new System.Drawing.Size(475, 332);
+            this.panelGraph.TabIndex = 2;
             // 
             // openFileDialog1
             // 
@@ -708,7 +708,7 @@ namespace DarjoWarehouseProject
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Panel Graph;
+        private System.Windows.Forms.Panel panelGraph;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

@@ -47,59 +47,8 @@ namespace DarjoWarehouseProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (openFile.ShowDialog() == DialogResult.OK)
-            {
-                // open .txt file
-                StreamReader sr = new StreamReader(openFile.FileName);
-                int lineNum = 0;
-                while (line != null)
-                {
-                    // array of splitted line
-                    String[] splitLine = new String[2];
-
-                    // read every line
-                    line = sr.ReadLine();
-
-                    // skip 1st line (num of relation)
-                    if (line != null)
-                    {
-                        if (lineNum != 0)
-                        {
-                            // split every line read
-                            splitLine = line.Split(' ');
-
-                            // add unique account to `account` and "Choose Account" dropdown
-                            if (!account.Contains(splitLine[0]))
-                            {
-                                account.Add(splitLine[0]);
-                                ChooseAccount.Items.Add(splitLine[0]);
-                            }
-                            // add all relation to `relation`
-                            relation.Add(splitLine);
-                        }
-                        else
-                        {
-                            try
-                            {
-                                // num of relation
-                                nRelations = Convert.ToInt32(line);
-                            }
-                            catch
-                            {
-
-                            }
-                        }
-                    }
-                    lineNum++;
-                }
-                // display filename
-                GraphFileName.Text = Path.GetFileName(openFile.FileName);
-            }
-            // failed to open file
-            else
-            {
-                MessageBox.Show("Choose .txt File", "Failed to Open File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            chooseFile();
+            visualizeGraph();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -127,6 +76,120 @@ namespace DarjoWarehouseProject
         {
             // exit
             this.Close();
+        }
+
+        private void chooseFile()
+        {
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // open .txt file
+                    StreamReader sr = new StreamReader(openFile.FileName);
+                    int lineNum = 0;
+                    while (line != null)
+                    {
+                        // array of splitted line
+                        String[] splitLine = new String[2];
+
+                        // read every line
+                        line = sr.ReadLine();
+
+                        // skip 1st line (num of relation)
+                        if (line != null)
+                        {
+                            if (lineNum != 0)
+                            {
+                                // split every line read
+                                splitLine = line.Split(' ');
+
+                                // add unique account to `account` and "Choose Account" dropdown
+                                if (!account.Contains(splitLine[0]))
+                                {
+                                    account.Add(splitLine[0]);
+                                    ChooseAccount.Items.Add(splitLine[0]);
+                                }
+                                else if (!account.Contains(splitLine[1]))
+                                {
+                                    account.Add(splitLine[1]);
+                                    ChooseAccount.Items.Add(splitLine[1]);
+                                }
+                                // add all relation to `relation`
+                                relation.Add(splitLine);
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    // num of relation
+                                    nRelations = Convert.ToInt32(line);
+                                }
+                                catch
+                                {
+
+                                }
+                            }
+                        }
+                        lineNum++;
+                    }
+                    // display filename
+                    GraphFileName.Text = Path.GetFileName(openFile.FileName);
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show(error.Message, "Failed to Open File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            // failed to open file
+            else
+            {
+                MessageBox.Show("Choose .txt File", "Failed to Open File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void visualizeGraph()
+        {
+            //create a form 
+            //System.Windows.Forms.Form form = new System.Windows.Forms.Form();
+            //create a viewer object 
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            //create a graph object 
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            //create the graph content 
+            //graph.AddEdge("A", "B");
+            //graph.AddEdge("B", "C");
+            //graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+            //graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
+            //graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
+            //Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
+            //c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
+            //c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
+            //bind the graph to the viewer 
+
+            foreach(var r in relation)
+            {
+                graph.AddEdge(r[0], r[1]);
+            }
+
+            foreach(var n in account)
+            {
+                graph.FindNode(n).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
+            }
+
+            viewer.Graph = graph;
+
+            //System.Drawing.Color c = Utils.GetColor(transition.Rule.Pertinence);
+            //var color = new Microsoft.Msagl.Drawing.Color((byte)c.R, (byte)c.G, (byte)c.B);
+            graph.Attr.BackgroundColor = Microsoft.Msagl.Drawing.Color.MidnightBlue;
+
+            //associate the viewer with the form 
+            panelGraph.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            panelGraph.Controls.Add(viewer);    
+            panelGraph.ResumeLayout();
+            //show the form 
+            //form.ShowDialog();
         }
     }
 }
