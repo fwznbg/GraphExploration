@@ -100,7 +100,7 @@ namespace DarjoWarehouseProject
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(209, 577);
+            this.panel1.Size = new System.Drawing.Size(209, 661);
             this.panel1.TabIndex = 1;
             // 
             // panel2
@@ -159,7 +159,7 @@ namespace DarjoWarehouseProject
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CloseButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseButton.ForeColor = System.Drawing.Color.White;
-            this.CloseButton.Location = new System.Drawing.Point(916, 11);
+            this.CloseButton.Location = new System.Drawing.Point(1065, 11);
             this.CloseButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(23, 23);
@@ -183,22 +183,21 @@ namespace DarjoWarehouseProject
             // 
             this.panel13.Controls.Add(this.button1);
             this.panel13.Controls.Add(this.GraphFileName);
-            this.panel13.Location = new System.Drawing.Point(246, 464);
+            this.panel13.Location = new System.Drawing.Point(244, 532);
             this.panel13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(116, 80);
+            this.panel13.Size = new System.Drawing.Size(154, 80);
             this.panel13.TabIndex = 14;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.button1.Location = new System.Drawing.Point(0, 39);
+            this.button1.Location = new System.Drawing.Point(0, 36);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 41);
@@ -212,7 +211,7 @@ namespace DarjoWarehouseProject
             this.GraphFileName.AutoSize = true;
             this.GraphFileName.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GraphFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.GraphFileName.Location = new System.Drawing.Point(0, 0);
+            this.GraphFileName.Location = new System.Drawing.Point(3, 11);
             this.GraphFileName.Name = "GraphFileName";
             this.GraphFileName.Size = new System.Drawing.Size(0, 23);
             this.GraphFileName.TabIndex = 4;
@@ -222,7 +221,7 @@ namespace DarjoWarehouseProject
             this.panel12.Controls.Add(this.submit);
             this.panel12.Controls.Add(this.xplore);
             this.panel12.Controls.Add(this.explorefriend);
-            this.panel12.Location = new System.Drawing.Point(734, 449);
+            this.panel12.Location = new System.Drawing.Point(876, 532);
             this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(183, 102);
@@ -274,7 +273,7 @@ namespace DarjoWarehouseProject
             // 
             this.bfsbfspanel.Controls.Add(this.bfs);
             this.bfsbfspanel.Controls.Add(this.dfs);
-            this.bfsbfspanel.Location = new System.Drawing.Point(395, 464);
+            this.bfsbfspanel.Location = new System.Drawing.Point(404, 555);
             this.bfsbfspanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bfsbfspanel.Name = "bfsbfspanel";
             this.bfsbfspanel.Size = new System.Drawing.Size(91, 57);
@@ -320,7 +319,7 @@ namespace DarjoWarehouseProject
             this.panel3.Location = new System.Drawing.Point(246, 95);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(671, 332);
+            this.panel3.Size = new System.Drawing.Size(813, 413);
             this.panel3.TabIndex = 15;
             // 
             // flowLayoutPanel1
@@ -336,10 +335,10 @@ namespace DarjoWarehouseProject
             this.flowLayoutPanel1.Controls.Add(this.panel9);
             this.flowLayoutPanel1.Controls.Add(this.panel11);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(474, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(616, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(197, 332);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(197, 413);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // panel10
@@ -605,7 +604,7 @@ namespace DarjoWarehouseProject
             this.panelGraph.Location = new System.Drawing.Point(0, 0);
             this.panelGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelGraph.Name = "panelGraph";
-            this.panelGraph.Size = new System.Drawing.Size(475, 332);
+            this.panelGraph.Size = new System.Drawing.Size(616, 413);
             this.panelGraph.TabIndex = 2;
             // 
             // openFileDialog1
@@ -617,11 +616,11 @@ namespace DarjoWarehouseProject
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(951, 577);
+            this.ClientSize = new System.Drawing.Size(1100, 661);
+            this.Controls.Add(this.bfsbfspanel);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.panel12);
-            this.Controls.Add(this.bfsbfspanel);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.panel1);

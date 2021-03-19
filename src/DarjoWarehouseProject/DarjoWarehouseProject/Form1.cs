@@ -18,10 +18,10 @@ namespace DarjoWarehouseProject
         List<string> account = new List<string>();
 
         //contains all relation e.g. [A, B] -> A friend of B
-        List<string[]> relation = new List<string[]>();
+        List<string[]> relations = new List<string[]>();
 
         // num of relation
-        int nRelations;
+        int nRelations = 0;
 
         // open file
         OpenFileDialog openFile = new OpenFileDialog();
@@ -46,39 +46,6 @@ namespace DarjoWarehouseProject
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            chooseFile();
-            visualizeGraph();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // to filter only .txt file
-            openFile.Filter = "Text Files (.txt) | *.txt";
-        }
-
-        private void ChooseAccount_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // clear "Explore Friends With" dropdown
-            explorefriend.Items.Clear();
-            // chosen account on "Choose Account" dropdown
-            String chosenAcc = ChooseAccount.Text;
-
-            // add unselected account to "Explore Friends With" dropdown
-            foreach (var item in ChooseAccount.Items)
-            {
-                if (item.ToString() == chosenAcc) continue;
-                explorefriend.Items.Add(item);
-            }
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            // exit
-            this.Close();
-        }
-
-        private void chooseFile()
         {
             if (openFile.ShowDialog() == DialogResult.OK)
             {
@@ -115,7 +82,7 @@ namespace DarjoWarehouseProject
                                     ChooseAccount.Items.Add(splitLine[1]);
                                 }
                                 // add all relation to `relation`
-                                relation.Add(splitLine);
+                                relations.Add(splitLine);
                             }
                             else
                             {
@@ -146,50 +113,36 @@ namespace DarjoWarehouseProject
             {
                 MessageBox.Show("Choose .txt File", "Failed to Open File", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            Visualizer v = new Visualizer();
+            v.Initialize(account, relations, nRelations, panelGraph);
         }
 
-        private void visualizeGraph()
+        private void Form1_Load(object sender, EventArgs e)
         {
-            //create a form 
-            //System.Windows.Forms.Form form = new System.Windows.Forms.Form();
-            //create a viewer object 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            //create a graph object 
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            //create the graph content 
-            //graph.AddEdge("A", "B");
-            //graph.AddEdge("B", "C");
-            //graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-            //graph.FindNode("A").Attr.FillColor = Microsoft.Msagl.Drawing.Color.Magenta;
-            //graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
-            //Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
-            //c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
-            //c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
-            //bind the graph to the viewer 
+            // to filter only .txt file
+            openFile.Filter = "Text Files (.txt) | *.txt";
+        }
 
-            foreach(var r in relation)
+        private void ChooseAccount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // clear "Explore Friends With" dropdown
+            explorefriend.Items.Clear();
+            // chosen account on "Choose Account" dropdown
+            String chosenAcc = ChooseAccount.Text;
+
+            // add unselected account to "Explore Friends With" dropdown
+            foreach (var item in ChooseAccount.Items)
             {
-                graph.AddEdge(r[0], r[1]);
+                if (item.ToString() == chosenAcc) continue;
+                explorefriend.Items.Add(item);
             }
+        }
 
-            foreach(var n in account)
-            {
-                graph.FindNode(n).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
-            }
-
-            viewer.Graph = graph;
-
-            //System.Drawing.Color c = Utils.GetColor(transition.Rule.Pertinence);
-            //var color = new Microsoft.Msagl.Drawing.Color((byte)c.R, (byte)c.G, (byte)c.B);
-            graph.Attr.BackgroundColor = Microsoft.Msagl.Drawing.Color.MidnightBlue;
-
-            //associate the viewer with the form 
-            panelGraph.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            panelGraph.Controls.Add(viewer);    
-            panelGraph.ResumeLayout();
-            //show the form 
-            //form.ShowDialog();
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            // exit
+            this.Close();
         }
     }
 }
