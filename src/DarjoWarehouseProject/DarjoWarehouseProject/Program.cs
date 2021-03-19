@@ -46,7 +46,6 @@ namespace DarjoWarehouseProject
             panel.ResumeLayout();
 
         }
-
     }
 
     static class Program

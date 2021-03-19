@@ -27,6 +27,9 @@ namespace DarjoWarehouseProject
         OpenFileDialog openFile = new OpenFileDialog();
         string line = "";
 
+        //visualizer
+        Visualizer v = new Visualizer();
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -101,6 +104,7 @@ namespace DarjoWarehouseProject
                     }
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
+                    v.Initialize(account, relations, nRelations, panelGraph);
                 }
                 catch (Exception error)
                 {
@@ -113,9 +117,6 @@ namespace DarjoWarehouseProject
             {
                 MessageBox.Show("Choose .txt File", "Failed to Open File", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            Visualizer v = new Visualizer();
-            v.Initialize(account, relations, nRelations, panelGraph);
         }
 
         private void Form1_Load(object sender, EventArgs e)
