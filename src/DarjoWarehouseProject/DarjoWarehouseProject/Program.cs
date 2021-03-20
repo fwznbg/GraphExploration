@@ -49,108 +49,132 @@ namespace DarjoWarehouseProject
     }
 
     public class Graph {
-        private int V;
-        private List<int>[] adj;
-        private List<int> new_adj = new List<int>();
-        private IDictionary<int, List<int>> adj_friend;
-        private int selectedNode;
-        private List<int> list_adj = new List<int>();
+    private int V;
+    private List<int>[] adj;
+    private List<int> new_adj = new List<int>();
+    private IDictionary<int, List<int>> adj_friend;
+    private int selectedNode;
+    private List<int> list_adj = new List<int>();
+    private char[] abjad = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+      'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    };
+    private IDictionary<int, char> abjadToInt = new Dictionary<int, char>(){
+      {0, 'A'}
+    };
 
-        public Graph(int v, int sltNode) {
-            V = v;
-            adj = new List<int>[ v ];
-            selectedNode = sltNode;
-            adj_friend = new Dictionary<int, List<int>>();
-            list_adj.Add(selectedNode);
-            for (int i = 0; i < v; ++i)
-                adj[i] = new List<int>();
+    public Graph(int v, int sltNode) {
+      V = v;
+      adj = new List<int>[ v ];
+      selectedNode = sltNode;
+      adj_friend = new Dictionary<int, List<int>>();
+      list_adj.Add(selectedNode);
+      for (int i = 0; i < v; ++i)
+        adj[i] = new List<int>();
+    }
+ 
+    // void addEdge(int v, int w) {
+    //   adj[v].Add(w);
+    //   adj[w].Add(v);
+    // }
+
+    public void addEdge(char v, char w) {
+      int v2 = 0;
+      int w2 = 0;
+
+      for (int i=0; i<25; i++) {
+        if (abjad[i] == v) {
+          v2 = i;
         }
+      }
+
+      for (int i=0; i<25; i++) {
+        if (abjad[i] == w) {
+          w2 = i;
+        }
+      }
+
+      adj[v2].Add(w2);
+      adj[w2].Add(v2);
+    }
+
+    public void DFSUtil(int selectedNode, int v, bool[] visited) {
+      visited[v] = true;
+
+      foreach(int i in adj[v]) {
+        int n = i;
+
+        if (adj[selectedNode].Contains(n)) {
+          list_adj.Add(n);
+        }
+
+        if (!visited[n])
+          DFSUtil(selectedNode, n, visited);
+      }
+    }
     
-        public void addEdge(int v, int w) {
-            adj[v].Add(w);
-            adj[w].Add(v);
+    public void DFS() {
+      bool[] visited = new bool[V];
+
+      for (int i = 0; i < V; ++i)
+        if (visited[i] == false)
+          DFSUtil(selectedNode, i, visited);
+    }
+
+    public void DFS_Two() {
+      DFS();
+      Console.WriteLine("List ADJ");
+      foreach (var item in list_adj.Distinct().ToList()) {
+        Console.WriteLine("Value = {0}", item);
+      }
+
+      bool[] visited = new bool[V];
+
+      foreach (var item in list_adj) {
+        foreach (var item2 in adj[item])
+          new_adj.Add(item2);
+      } 
+      
+      FriendRecommendation();
+    }
+
+    public void FriendRecommendation() {
+      List<int> rmv_duplicate = new_adj.Distinct().ToList();
+      List<int> rmv_duplicate2 = new List<int>();
+
+      int counter = 0;
+      while (counter < list_adj.Count) {
+        if (rmv_duplicate.Contains(list_adj[counter])) {
+          rmv_duplicate.Remove(list_adj[counter]);
+        }
+        counter++;
+      }
+
+      Console.WriteLine("List Recom Friend");
+      for (int i=0; i<rmv_duplicate.Count; i++) {
+        Console.WriteLine("Value = {0}", rmv_duplicate[i]);
+      }
+
+      list_adj.Remove(selectedNode);
+
+      foreach (var item in rmv_duplicate) {
+        foreach (var item2 in list_adj) {
+          if (adj[item].Contains(item2)) {
+            rmv_duplicate2.Add(item2);
+          }
         }
 
-        public void DFSUtil(int selectedNode, int v, bool[] visited) {
-            visited[v] = true;
+        adj_friend.Add(item, rmv_duplicate2.Distinct().ToList());
+        rmv_duplicate2 = new List<int>();
+      }
 
-            foreach(int i in adj[v]) {
-                int n = i;
-
-                if (adj[selectedNode].Contains(n)) {
-                list_adj.Add(n);
-                }
-
-                if (!visited[n])
-                DFSUtil(selectedNode, n, visited);
-            }
+      foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
+        Console.WriteLine("Key = {0}", abjad[kvp.Key]);
+        foreach(var item in kvp.Value) {
+          Console.WriteLine("  Value = {0}",  abjad[item]);
         }
-        
-        public void DFS() {
-            bool[] visited = new bool[V];
-
-            for (int i = 0; i < V; ++i)
-                if (visited[i] == false)
-                DFSUtil(selectedNode, i, visited);
-        }
-
-        public void DFS_Two() {
-            DFS();
-            // Console.WriteLine("List ADJ");
-            // foreach (var item in list_adj.Distinct().ToList()) {
-            //   Console.WriteLine("Value = {0}", item);
-            // }
-
-            bool[] visited = new bool[V];
-
-            foreach (var item in list_adj) {
-                foreach (var item2 in adj[item])
-                new_adj.Add(item2);
-            } 
-        }
-
-        public void clean() {
-            List<int> rmv_duplicate = new_adj.Distinct().ToList();
-            List<int> rmv_duplicate2 = new List<int>();
-
-            int counter = 0;
-            while (counter < list_adj.Count) {
-                if (rmv_duplicate.Contains(list_adj[counter])) {
-                rmv_duplicate.Remove(list_adj[counter]);
-                }
-                counter++;
-            }
-
-            // Console.WriteLine("List Recom Friend");
-            // for (int i=0; i<rmv_duplicate.Count; i++) {
-            //   Console.WriteLine("Value = {0}", rmv_duplicate[i]);
-            // }
-
-            list_adj.Remove(selectedNode);
-
-            foreach (var item in rmv_duplicate) {
-                foreach (var item2 in list_adj) {
-                if (adj[item].Contains(item2)) {
-                    rmv_duplicate2.Add(item2);
-                }
-                }
-
-                adj_friend.Add(item, rmv_duplicate2.Distinct().ToList());
-                rmv_duplicate2 = new List<int>();
-            }
-
-            char[] abjad = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-                };
-
-            foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
-                Console.WriteLine("Key = {0}", abjad[kvp.Key]);
-                foreach(var item in kvp.Value) {
-                Console.WriteLine("  Value = {0}",  abjad[item]);
-                }
-                Console.WriteLine();
-            }
-        }
+        Console.WriteLine();
+      }
+    }
     }
 
     static class Program
@@ -165,29 +189,28 @@ namespace DarjoWarehouseProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            Graph g = new Graph(8, 7);
+            Graph g = new Graph(8, 0);
 
-            g.addEdge(0, 1);
-            g.addEdge(0, 2);
-            g.addEdge(0, 3);
+            g.addEdge('A', 'B');
+            g.addEdge('A', 'C');
+            g.addEdge('A', 'D');
 
-            g.addEdge(1, 2);
-            g.addEdge(1, 4);
-            g.addEdge(1, 5);
+            g.addEdge('B', 'C');
+            g.addEdge('B', 'E');
+            g.addEdge('B', 'F');
 
-            g.addEdge(2, 5);
-            g.addEdge(2, 6);
+            g.addEdge('C', 'F');
+            g.addEdge('C', 'G');
 
-            g.addEdge(3, 6);
-            g.addEdge(3, 5);
+            g.addEdge('D', 'G');
+            g.addEdge('D', 'F');
 
-            g.addEdge(4, 5);
-            g.addEdge(4, 7);
+            g.addEdge('E', 'H');
+            g.addEdge('E', 'F');
 
-            g.addEdge(5, 7);
+            g.addEdge('F', 'H');
 
             g.DFS_Two();
-            g.clean();
             
         }
     }
