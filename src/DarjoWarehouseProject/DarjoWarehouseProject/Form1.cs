@@ -30,8 +30,8 @@ namespace DarjoWarehouseProject
         //visualizer
         Visualizer v = new Visualizer();
 
+        // round the form's border edges
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
-
         private static extern IntPtr CreateRoundRectRgn
          (
                int nLeftRect,
@@ -42,10 +42,12 @@ namespace DarjoWarehouseProject
                int nHeightEllipse
 
          );
+
         public Form1()
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
+            v.Initialize(panelGraph);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -101,10 +103,18 @@ namespace DarjoWarehouseProject
                             }
                         }
                         lineNum++;
+                        splitLine = null;
                     }
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
-                    v.Initialize(account, relations, nRelations, panelGraph);
+
+                    if(v.Viewer.Graph != null)
+                    {
+                        v.ClearScreen(account);
+                    }
+                    v.Start(account, relations);
+
+                    sr = null;
                 }
                 catch (Exception error)
                 {
@@ -144,6 +154,21 @@ namespace DarjoWarehouseProject
         {
             // exit
             this.Close();
+            account = null;
+            relations = null;
+            openFile = null;
+            v = null;
+        }
+
+        private void submit_Click(object sender, EventArgs e)
+        {
+            List<string> path = new List<string>(new string[] { "A", "C", "F", "H" });
+            // visualize path
+            if(v.Viewer.Graph != null) // if graph had chosen
+            {
+                v.VisualizePath(account, relations, path);
+            }
+            path = null;
         }
     }
 }

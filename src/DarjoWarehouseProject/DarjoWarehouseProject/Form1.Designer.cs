@@ -44,8 +44,8 @@ namespace DarjoWarehouseProject
             this.xplore = new System.Windows.Forms.Label();
             this.explorefriend = new System.Windows.Forms.ComboBox();
             this.bfsbfspanel = new System.Windows.Forms.Panel();
-            this.bfs = new System.Windows.Forms.RadioButton();
-            this.dfs = new System.Windows.Forms.RadioButton();
+            this.radioButtonBFS = new System.Windows.Forms.RadioButton();
+            this.radioButtonDFS = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -242,6 +242,7 @@ namespace DarjoWarehouseProject
             this.submit.TabIndex = 4;
             this.submit.Text = "Submit";
             this.submit.UseVisualStyleBackColor = false;
+            this.submit.Click += new System.EventHandler(this.submit_Click);
             // 
             // xplore
             // 
@@ -271,46 +272,46 @@ namespace DarjoWarehouseProject
             // 
             // bfsbfspanel
             // 
-            this.bfsbfspanel.Controls.Add(this.bfs);
-            this.bfsbfspanel.Controls.Add(this.dfs);
+            this.bfsbfspanel.Controls.Add(this.radioButtonBFS);
+            this.bfsbfspanel.Controls.Add(this.radioButtonDFS);
             this.bfsbfspanel.Location = new System.Drawing.Point(404, 555);
             this.bfsbfspanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bfsbfspanel.Name = "bfsbfspanel";
             this.bfsbfspanel.Size = new System.Drawing.Size(91, 57);
             this.bfsbfspanel.TabIndex = 12;
             // 
-            // bfs
+            // radioButtonBFS
             // 
-            this.bfs.AutoSize = true;
-            this.bfs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bfs.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bfs.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bfs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.bfs.Location = new System.Drawing.Point(0, 30);
-            this.bfs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.bfs.Name = "bfs";
-            this.bfs.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bfs.Size = new System.Drawing.Size(91, 27);
-            this.bfs.TabIndex = 1;
-            this.bfs.TabStop = true;
-            this.bfs.Text = "BFS";
-            this.bfs.UseVisualStyleBackColor = true;
+            this.radioButtonBFS.AutoSize = true;
+            this.radioButtonBFS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radioButtonBFS.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radioButtonBFS.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonBFS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.radioButtonBFS.Location = new System.Drawing.Point(0, 30);
+            this.radioButtonBFS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButtonBFS.Name = "radioButtonBFS";
+            this.radioButtonBFS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioButtonBFS.Size = new System.Drawing.Size(91, 27);
+            this.radioButtonBFS.TabIndex = 1;
+            this.radioButtonBFS.TabStop = true;
+            this.radioButtonBFS.Text = "BFS";
+            this.radioButtonBFS.UseVisualStyleBackColor = true;
             // 
-            // dfs
+            // radioButtonDFS
             // 
-            this.dfs.AutoSize = true;
-            this.dfs.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dfs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dfs.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dfs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.dfs.Location = new System.Drawing.Point(0, 0);
-            this.dfs.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dfs.Name = "dfs";
-            this.dfs.Size = new System.Drawing.Size(91, 27);
-            this.dfs.TabIndex = 0;
-            this.dfs.TabStop = true;
-            this.dfs.Text = "DFS";
-            this.dfs.UseVisualStyleBackColor = true;
+            this.radioButtonDFS.AutoSize = true;
+            this.radioButtonDFS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.radioButtonDFS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radioButtonDFS.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonDFS.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.radioButtonDFS.Location = new System.Drawing.Point(0, 0);
+            this.radioButtonDFS.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButtonDFS.Name = "radioButtonDFS";
+            this.radioButtonDFS.Size = new System.Drawing.Size(91, 27);
+            this.radioButtonDFS.TabIndex = 0;
+            this.radioButtonDFS.TabStop = true;
+            this.radioButtonDFS.Text = "DFS";
+            this.radioButtonDFS.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -679,8 +680,8 @@ namespace DarjoWarehouseProject
         private System.Windows.Forms.Label xplore;
         private System.Windows.Forms.ComboBox explorefriend;
         private System.Windows.Forms.Panel bfsbfspanel;
-        private System.Windows.Forms.RadioButton bfs;
-        private System.Windows.Forms.RadioButton dfs;
+        private System.Windows.Forms.RadioButton radioButtonBFS;
+        private System.Windows.Forms.RadioButton radioButtonDFS;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel10;
