@@ -103,7 +103,7 @@ namespace DarjoWarehouseProject
                                 {
                                     account.Add(splitLine[0]);
                                 }
-                                else if (!account.Contains(splitLine[1]))
+                                if (!account.Contains(splitLine[1]))
                                 {
                                     account.Add(splitLine[1]);
                                 }
@@ -140,7 +140,7 @@ namespace DarjoWarehouseProject
                     g.fromRead(account, relations);
                     friendRecomendationResult = g.BFSRecomendation();
 
-                    v.Initialize(account, relations, nRelations, panelGraph);
+                    v.Initialize(panelGraph);
                     if(v.Viewer.Graph != null)
                     {
                         v.ClearScreen(account);
@@ -196,7 +196,7 @@ namespace DarjoWarehouseProject
 
         private void submit_Click(object sender, EventArgs e)
         {
-            List<string> path = new List<string>(new string[] { "Fadel", "Afif", "Arsa", "Tanur" });
+            List<string> path = new List<string>(new string[] { "A", "B", "C", "F", "H" });
 
             if(ChooseAccount.Items.Contains("Choose Graph First")) // graph didn't chosen
             {
