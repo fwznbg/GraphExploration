@@ -61,6 +61,7 @@ namespace DarjoWarehouseProject
       private IDictionary<int, char> abjadToInt = new Dictionary<int, char>(){
         {0, 'A'}
       };
+      List<string> account = new List<string>();
 
       public Graph(int v, int sltNode) {
         V = v;
@@ -76,6 +77,35 @@ namespace DarjoWarehouseProject
     //   adj[v].Add(w);
     //   adj[w].Add(v);
     // }
+
+      public void fromRead(List<string> accountInput, List<string[]> relation) {
+        foreach (var eachA in accountInput) {
+          account.Add(eachA);
+        }
+        foreach (var eachR in relation) {
+          addEdgeString(eachR[0], eachR[1]);
+        }
+      }
+
+      public void addEdgeString(string v, string w) {
+        int v2 = 0;
+        int w2 = 0;
+
+        for (int i=0; i<account.Count(); i++) {
+          if (account[i] == v) {
+            v2 = i;
+          }
+        }
+
+        for (int i=0; i<25; i++) {
+          if (account[i] == w) {
+            w2 = i;
+          }
+        }
+
+        adj[v2].Add(w2);
+        adj[w2].Add(v2);
+      }
 
       public void addEdge(char v, char w) {
         int v2 = 0;
@@ -182,7 +212,7 @@ namespace DarjoWarehouseProject
         // your code heree
       }
 
-      public void BFSRecomendation() {
+      public IDictionary<string, List<string>> BFSRecomendation() {
         int currNode;
         List<int> queue = new List<int>();
         bool[] visited = new bool[V];
@@ -242,6 +272,22 @@ namespace DarjoWarehouseProject
 
         // flush adj friend biar bisa nyari recomendation lagi
         // your code heree
+        return adjFriendToString();
+      }
+
+      public IDictionary<string, List<string>> adjFriendToString() {
+        IDictionary<string, List<string>> adj_friend_string = new Dictionary<string, List<string>>();
+        
+        foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
+          string key = account[kvp.Key];
+          List<string> toValue = new List<string>();
+          foreach(var item in kvp.Value) {
+            toValue.Add(account[item]);
+          }
+          adj_friend_string.Add(key, toValue);
+        }
+
+        return adj_friend_string;
       }
     }
 
@@ -257,32 +303,33 @@ namespace DarjoWarehouseProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            Graph g = new Graph(8, 0);
+            //sementara komen dulu
+            // Graph g = new Graph(8, 0);
 
-            g.addEdge('A', 'B');
-            g.addEdge('A', 'C');
-            g.addEdge('A', 'D');
+            // g.addEdge('A', 'B');
+            // g.addEdge('A', 'C');
+            // g.addEdge('A', 'D');
 
-            g.addEdge('B', 'C');
-            g.addEdge('B', 'E');
-            g.addEdge('B', 'F');
+            // g.addEdge('B', 'C');
+            // g.addEdge('B', 'E');
+            // g.addEdge('B', 'F');
 
-            g.addEdge('C', 'F');
-            g.addEdge('C', 'G');
+            // g.addEdge('C', 'F');
+            // g.addEdge('C', 'G');
 
-            g.addEdge('D', 'G');
-            g.addEdge('D', 'F');
+            // g.addEdge('D', 'G');
+            // g.addEdge('D', 'F');
 
-            g.addEdge('E', 'H');
-            g.addEdge('E', 'F');
+            // g.addEdge('E', 'H');
+            // g.addEdge('E', 'F');
 
-            g.addEdge('F', 'H');
+            // g.addEdge('F', 'H');
             
-            // Console.WriteLine("DFS ni coy");
-            // g.DFS_Two();
+            // // Console.WriteLine("DFS ni coy");
+            // // g.DFS_Two();
 
-            Console.WriteLine("BFS ni coy");
-            g.BFSRecomendation();
+            // Console.WriteLine("BFS ni coy");
+            // g.BFSRecomendation();
         }
     }
 }

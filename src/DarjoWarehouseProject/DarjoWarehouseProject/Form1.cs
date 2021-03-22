@@ -22,6 +22,8 @@ namespace DarjoWarehouseProject
 
         // num of relation
         int nRelations = 0;
+        Graph g;
+        IDictionary<string, List<string>> friendRecomendationResult = new Dictionary<string, List<string>>();
 
         // open file
         OpenFileDialog openFile = new OpenFileDialog();
@@ -104,6 +106,11 @@ namespace DarjoWarehouseProject
                     }
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
+
+                    g = new Graph(nRelations, 0);
+                    g.fromRead(account, relations);
+                    friendRecomendationResult = g.BFSRecomendation();
+
                     v.Initialize(account, relations, nRelations, panelGraph);
                 }
                 catch (Exception error)
