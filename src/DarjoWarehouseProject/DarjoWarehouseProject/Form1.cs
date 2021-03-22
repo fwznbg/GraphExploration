@@ -145,7 +145,7 @@ namespace DarjoWarehouseProject
                         v.ClearScreen(account);
                     }
                     v.Start(account, relations);
-                    flowLayoutPanel1.Controls.Clear();
+                    //flowLayoutPanel1.Controls.Clear();
 
                     sr = null;
                 }
@@ -209,15 +209,18 @@ namespace DarjoWarehouseProject
         {
             if (!(ChooseAccount.Items.Contains("Choose Graph First") || (ChooseAccount.SelectedItem == null)))
             {
+                flowLayoutPanel1.Controls.Clear();
+
                 if (algo == "BFS")
                 {
                     friendRecomendationResult = g.BFSRecomendation();
                 }
                 else
                 {
-
+                    
                 }
 
+                // sort recommendation based on mutuals 
                 List<int> mutualSize = new List<int>();
                 foreach(var acc in friendRecomendationResult)
                 {
@@ -228,6 +231,8 @@ namespace DarjoWarehouseProject
 
                 foreach (var acc in friendRecomendationResult)
                 {
+                    int nMutuals = acc.Value.Count;
+                    if (nMutuals == 0) continue;
                     Panel panel = new Panel();
                     Label lbl1 = new Label();
                     Label lbl2 = new Label();
@@ -243,13 +248,15 @@ namespace DarjoWarehouseProject
                     lbl1.Text = acc.Key;
                     lbl1.Dock = DockStyle.Top;
 
-                    lbl2.Text = String.Format("{0} Mutual Friends: {1}", acc.Value.Count, String.Join(", ", acc.Value));
+                    lbl2.Text = String.Format("{0} Mutual Friends: {1}", nMutuals, String.Join(", ", acc.Value));
                     lbl2.Dock = DockStyle.Bottom;
 
                     panel.Controls.Add(lbl1);
                     panel.Controls.Add(lbl2);
                     flowLayoutPanel1.Controls.Add(panel);
-                    flowLayoutPanel1.Controls.SetChildIndex(panel, mutualSize.IndexOf(acc.Value.Count));
+
+                    // set index based on mutuals
+                    flowLayoutPanel1.Controls.SetChildIndex(panel, mutualSize.IndexOf(nMutuals));
                 }
             }
         }
@@ -284,7 +291,17 @@ namespace DarjoWarehouseProject
 
         private void radioButtonBFS_CheckedChanged(object sender, EventArgs e)
         {
-            showFriendRec("BFS");
+            if (radioButtonBFS.Checked) {
+                showFriendRec("BFS");
+            }
+        }
+
+        private void radioButtonDFS_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonBFS.Checked)
+            {
+                showFriendRec("DFS");
+            }
         }
     }
 }

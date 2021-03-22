@@ -295,6 +295,7 @@ namespace DarjoWarehouseProject
             this.radioButtonDFS.TabStop = true;
             this.radioButtonDFS.Text = "DFS";
             this.radioButtonDFS.UseVisualStyleBackColor = true;
+            this.radioButtonDFS.CheckedChanged += new System.EventHandler(this.radioButtonDFS_CheckedChanged);
             // 
             // panel3
             // 
