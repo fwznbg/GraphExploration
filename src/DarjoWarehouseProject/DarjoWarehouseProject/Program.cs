@@ -48,7 +48,8 @@ namespace DarjoWarehouseProject
             // add every relation to graph
             foreach (var r in relations)
             {
-                graph.AddEdge(r[0], r[1]);
+                var e = graph.AddEdge(r[0], r[1]);
+                e.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
             }
 
             // coloring every nodes
@@ -74,7 +75,6 @@ namespace DarjoWarehouseProject
         public void VisualizePath(List<string> account, List<string[]> relations, List<string> Path) // visualize path on graph
         {
             ClearScreen(account);   // clear screen before visualize
-
             // add every relations to graph
             foreach (var r in relations)
             {
@@ -83,11 +83,14 @@ namespace DarjoWarehouseProject
                 // if relation is the destionation 
                 if (Path.Contains(r[0]) && Path.Contains(r[1]) && isDestination)
                 {
-                    graph.AddEdge(r[0], r[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.White;
+                    var e = graph.AddEdge(r[0], r[1]);
+                    e.Attr.Color = Microsoft.Msagl.Drawing.Color.White;
+                    e.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                 }
                 else
                 {
-                    graph.AddEdge(r[0], r[1]);
+                    var e = graph.AddEdge(r[0], r[1]);
+                    e.Attr.ArrowheadAtTarget = Microsoft.Msagl.Drawing.ArrowStyle.None;
                 }
             }
 

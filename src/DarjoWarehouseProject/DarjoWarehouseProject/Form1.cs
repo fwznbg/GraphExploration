@@ -27,7 +27,6 @@ namespace DarjoWarehouseProject
 
         // open file
         OpenFileDialog openFile = new OpenFileDialog();
-        string line = "";
 
         //visualizer
         Visualizer v = new Visualizer();
@@ -49,11 +48,25 @@ namespace DarjoWarehouseProject
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 25, 25));
-            v.Initialize(panelGraph);
+            v.Initialize(panelGraph); // initialize graph
         }
+        protected override void WndProc(ref Message m) // make form draggable
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
 
+            base.WndProc(ref m);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -61,6 +74,14 @@ namespace DarjoWarehouseProject
                     // open .txt file
                     StreamReader sr = new StreamReader(openFile.FileName);
                     int lineNum = 0;
+                    string line = "";
+
+                    account.Clear();
+                    relations.Clear();
+                    ChooseAccount.Items.Clear();
+                    radioButtonBFS.Checked = false;
+                    radioButtonDFS.Checked = false;
+
                     while (line != null)
                     {
                         // array of splitted line
@@ -81,12 +102,10 @@ namespace DarjoWarehouseProject
                                 if (!account.Contains(splitLine[0]))
                                 {
                                     account.Add(splitLine[0]);
-                                    ChooseAccount.Items.Add(splitLine[0]);
                                 }
                                 else if (!account.Contains(splitLine[1]))
                                 {
                                     account.Add(splitLine[1]);
-                                    ChooseAccount.Items.Add(splitLine[1]);
                                 }
                                 // add all relation to `relation`
                                 relations.Add(splitLine);
@@ -107,6 +126,13 @@ namespace DarjoWarehouseProject
                         lineNum++;
                         splitLine = null;
                     }
+
+                    account.Sort();
+                    foreach(var acc in account)
+                    {
+                        ChooseAccount.Items.Add(acc);
+                    }
+
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
 
@@ -120,6 +146,7 @@ namespace DarjoWarehouseProject
                         v.ClearScreen(account);
                     }
                     v.Start(account, relations);
+                    flowLayoutPanel1.Controls.Clear();
 
                     sr = null;
                 }
@@ -169,13 +196,72 @@ namespace DarjoWarehouseProject
 
         private void submit_Click(object sender, EventArgs e)
         {
-            List<string> path = new List<string>(new string[] { "A", "C", "F", "H" });
-            // visualize path
-            if(v.Viewer.Graph != null) // if graph had chosen
+            List<string> path = new List<string>(new string[] { "Fadel", "Afif", "Arsa", "Tanur" });
+
+            if(ChooseAccount.Items.Contains("Choose Graph First")) // graph didn't chosen
             {
-                v.VisualizePath(account, relations, path);
+                MessageBox.Show("Choose Graph First", "Graph Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }else if(ChooseAccount.SelectedItem == null) // account didn't chosen
+            {
+                MessageBox.Show("Choose Account First", "Account Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            path = null;
+            else if (explorefriend.SelectedItem == null) // friend to explore didn't chosen
+            {
+                MessageBox.Show("Choose Friend You Want to Explore First", "Friends Want to Explore Not Found ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }else if (!radioButtonBFS.Checked && !radioButtonDFS.Checked) // algorithm didn't chosen
+            {
+                MessageBox.Show("Choose Algorithm First (BFS/DFS)", "Algorithm Not Found ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else // visualize path and show result
+            {
+                flowLayoutPanel1.Controls.Clear();
+
+                if (v.Viewer.Graph != null) // if graph had chosen
+                {
+                    v.VisualizePath(account, relations, path);
+                }
+
+                foreach (var acc in path)
+                {
+                    Panel panel = new Panel();
+                    //Label lbl1 = new Label();
+                    Label lbl2 = new Label();
+                    RichTextBox t1 = new RichTextBox();
+
+                    Font font = new Font("Nirmala UI", 8, FontStyle.Regular);
+                    panel.BackColor = Color.FromArgb(24, 30, 54);
+                    panel.Font = font;
+                    panel.ForeColor = Color.FromArgb(0, 126, 249);
+                    panel.MinimumSize = new Size(195, 50);
+                    panel.AutoSize = true;
+                    panel.Padding = new Padding(5, 5, 5, 5);
+
+                    //lbl1.Text = "B(A->C->B ->D->, 1st Degree)";
+                    //lbl1.Dock = DockStyle.Top;
+                    t1.ReadOnly = true;
+                    t1.Text = "B(A->C->B->D->F->G->I, 1st Degree)";
+                    t1.Dock = DockStyle.Top;
+                    t1.Width = 195;
+                    using (Graphics g = CreateGraphics())
+                    {
+                        t1.Height = (int)g.MeasureString(t1.Text, t1.Font, t1.Width).Height + 5;
+                    }
+                    t1.BackColor = Color.FromArgb(24, 30, 54);
+                    t1.BorderStyle = BorderStyle.None;
+                    t1.Font = font;
+                    t1.ForeColor = Color.FromArgb(0, 126, 249);
+                    t1.Cursor = Cursors.Arrow;
+
+                    lbl2.Text = "A";
+                    lbl2.Dock = DockStyle.Bottom;
+
+                    panel.Controls.Add(t1);
+                    //panel.Controls.Add(lbl1);
+                    panel.Controls.Add(lbl2);
+                    flowLayoutPanel1.Controls.Add(panel);
+                }
+                path = null;
+            }
         }
     }
 }
