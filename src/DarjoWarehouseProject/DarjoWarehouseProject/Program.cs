@@ -401,24 +401,24 @@ namespace DarjoWarehouseProject
         temp.Clear();
 
         while (queue.Any() && !isFound) {
-          var queueFirst = queue.First();
-          currNode = queueFirst.Last();
+          currNode = queue.First().Last();
           visited[currNode] = true;
 
           if (currNode == selectedNode2) {
             isFound = true;
-            result = queueFirst;
+            result = queue.First();
           }
           else {
             Console.WriteLine(currNode);
 
             foreach(var toQueue in adj[currNode]) {
               if (!visited[toQueue]) {
-                foreach(var toEachQueue in queueFirst) {
+                foreach(var toEachQueue in queue.First()) {
                   temp.Add(toEachQueue);
                 }
                 temp.Add(currNode);
                 queue.Add(temp);
+                temp.Clear();
               }
             }
           }

@@ -201,9 +201,18 @@ namespace DarjoWarehouseProject
         
         private void submit_Click(object sender, EventArgs e)
         {
-            List<string> path = new List<string>(new string[] { "A", "B", "C", "F", "H" });
+            List<string> xplore = new List<string>();
+            if (radioButtonBFS.Checked)
+            {
+                xplore = g.BFSExploreFriend();
+            }
+            else
+            {
 
-            showExploreFriend(path);
+            }
+
+            showExploreFriend(xplore);
+
         }
 
         private void showFriendRec(string algo)
@@ -282,7 +291,26 @@ namespace DarjoWarehouseProject
                     v.VisualizePath(account, relations, path);
                 }
                 panelExplore.Visible = true;
-                richTextBoxExplore.Text = "A->B->C fafifuwasweswos degree";
+                String teks = String.Join("->", path);
+                int degree = path.Count() -  2;
+                if(degree < 0)
+                {
+                    richTextBoxExplore.Text = "Tidak dapat terhubung.";
+                }
+                else if(degree == 1)
+                {
+                    richTextBoxExplore.Text = teks + " 1st degree.";
+                }else if(degree == 2)
+                {
+                    richTextBoxExplore.Text = teks + " 2nd degree.";
+                }else if(degree == 3)
+                {
+                    richTextBoxExplore.Text = teks + " 3rd degree.";
+                }
+                else
+                {
+                    richTextBoxExplore.Text = teks + " " +degree+"th degree";
+                }
                 using (Graphics g = CreateGraphics())
                 {
                     richTextBoxExplore.Height = (int)g.MeasureString(richTextBoxExplore.Text, richTextBoxExplore.Font, richTextBoxExplore.Width).Height + 5;
@@ -303,6 +331,11 @@ namespace DarjoWarehouseProject
             {
                 showFriendRec("DFS");
             }
+        }
+
+        private void explorefriend_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            g.setAccount2(explorefriend.SelectedItem.ToString());
         }
     }
 }

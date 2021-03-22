@@ -251,6 +251,7 @@ namespace DarjoWarehouseProject
             this.explorefriend.Name = "explorefriend";
             this.explorefriend.Size = new System.Drawing.Size(176, 24);
             this.explorefriend.TabIndex = 2;
+            this.explorefriend.SelectedIndexChanged += new System.EventHandler(this.explorefriend_SelectedIndexChanged);
             // 
             // bfsbfspanel
             // 
