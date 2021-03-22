@@ -172,7 +172,8 @@ namespace DarjoWarehouseProject
         {
             radioButtonBFS.Checked = false;
             radioButtonDFS.Checked = false;
-            
+
+            flowLayoutPanel1.Controls.Clear();
             // clear "Explore Friends With" dropdown
             explorefriend.Items.Clear();
             // chosen account on "Choose Account" dropdown
@@ -217,7 +218,13 @@ namespace DarjoWarehouseProject
 
                 }
 
-                flowLayoutPanel1.Controls.Clear();
+                List<int> mutualSize = new List<int>();
+                foreach(var acc in friendRecomendationResult)
+                {
+                    mutualSize.Add(acc.Value.Count);
+                }
+                mutualSize.Sort();
+                mutualSize.Reverse();
 
                 foreach (var acc in friendRecomendationResult)
                 {
@@ -242,6 +249,7 @@ namespace DarjoWarehouseProject
                     panel.Controls.Add(lbl1);
                     panel.Controls.Add(lbl2);
                     flowLayoutPanel1.Controls.Add(panel);
+                    flowLayoutPanel1.Controls.SetChildIndex(panel, mutualSize.IndexOf(acc.Value.Count));
                 }
             }
         }
