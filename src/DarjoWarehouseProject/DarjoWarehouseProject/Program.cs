@@ -128,12 +128,13 @@ namespace DarjoWarehouseProject
       };
       List<string> account = new List<string>();
 
-      public Graph(int v, int sltNode) {
+      public Graph(int v) {
         V = v;
         adj = new List<int>[ v ];
-        selectedNode = sltNode;
+        // selectedNode = sltNode;
         adj_friend = new Dictionary<int, List<int>>();
-        list_adj.Add(selectedNode);
+        // list_adj.Add(selectedNode);
+        // diganti di setAccount
         for (int i = 0; i < v; ++i)
           adj[i] = new List<int>();
       }
@@ -142,6 +143,20 @@ namespace DarjoWarehouseProject
     //   adj[v].Add(w);
     //   adj[w].Add(v);
     // }
+
+      public void setAccount(string selectedAccount1) {
+        int i = 0;
+        bool isFound = false;
+        while(i < account.Count() && !isFound) {
+          if (account[i] == selectedAccount1) {
+            selectedNode = i;
+            isFound = true;
+          }
+          i++;
+        }
+        // sementara buat avifci
+        list_adj.Add(selectedNode);
+      }
 
       public void fromRead(List<string> accountInput, List<string[]> relation) {
         foreach (var eachA in accountInput) {
@@ -335,8 +350,6 @@ namespace DarjoWarehouseProject
           Console.WriteLine();
         }
 
-        // flush adj friend biar bisa nyari recomendation lagi
-        // your code heree
         return adjFriendToString();
       }
 
@@ -351,6 +364,9 @@ namespace DarjoWarehouseProject
           }
           adj_friend_string.Add(key, toValue);
         }
+
+        //flush adj_friend
+        adj_friend = new Dictionary<int, List<int>>();
 
         return adj_friend_string;
       }

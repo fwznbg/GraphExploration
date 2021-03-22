@@ -136,7 +136,7 @@ namespace DarjoWarehouseProject
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
                     var a = ChooseAccount.SelectedItem;
-                    g = new Graph(nRelations, 1);
+                    g = new Graph(nRelations);
                     g.fromRead(account, relations);
 
                     v.Initialize(panelGraph);
@@ -170,6 +170,9 @@ namespace DarjoWarehouseProject
 
         private void ChooseAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
+            radioButtonBFS.Checked = false;
+            radioButtonDFS.Checked = false;
+            
             // clear "Explore Friends With" dropdown
             explorefriend.Items.Clear();
             // chosen account on "Choose Account" dropdown
@@ -181,6 +184,7 @@ namespace DarjoWarehouseProject
                 if (item.ToString() == chosenAcc) continue;
                 explorefriend.Items.Add(item);
             }
+            g.setAccount(ChooseAccount.SelectedItem.ToString());
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
@@ -202,41 +206,43 @@ namespace DarjoWarehouseProject
 
         private void showFriendRec(string algo)
         {
-
-            if (algo=="BFS")
+            if (!(ChooseAccount.Items.Contains("Choose Graph First") || (ChooseAccount.SelectedItem == null)))
             {
-                friendRecomendationResult = g.BFSRecomendation();
-            }
-            else
-            {
+                if (algo == "BFS")
+                {
+                    friendRecomendationResult = g.BFSRecomendation();
+                }
+                else
+                {
 
-            }
+                }
 
-            flowLayoutPanel1.Controls.Clear();
+                flowLayoutPanel1.Controls.Clear();
 
-            foreach (var acc in friendRecomendationResult)
-            {
-                Panel panel = new Panel();
-                Label lbl1 = new Label();
-                Label lbl2 = new Label();
+                foreach (var acc in friendRecomendationResult)
+                {
+                    Panel panel = new Panel();
+                    Label lbl1 = new Label();
+                    Label lbl2 = new Label();
 
-                Font font = new Font("Nirmala UI", 8, FontStyle.Regular);
-                panel.BackColor = Color.FromArgb(24, 30, 54);
-                panel.Font = font;
-                panel.ForeColor = Color.FromArgb(0, 126, 249);
-                panel.MinimumSize = new Size(195, 50);
-                panel.AutoSize = true;
-                panel.Padding = new Padding(5, 5, 5, 5);
+                    Font font = new Font("Nirmala UI", 8, FontStyle.Regular);
+                    panel.BackColor = Color.FromArgb(24, 30, 54);
+                    panel.Font = font;
+                    panel.ForeColor = Color.FromArgb(0, 126, 249);
+                    panel.MinimumSize = new Size(195, 50);
+                    panel.AutoSize = true;
+                    panel.Padding = new Padding(5, 5, 5, 5);
 
-                lbl1.Text = acc.Key;
-                lbl1.Dock = DockStyle.Top;
+                    lbl1.Text = acc.Key;
+                    lbl1.Dock = DockStyle.Top;
 
-                lbl2.Text = String.Format("{0} Mutual Friends: {1}", acc.Value.Count, String.Join(", ", acc.Value));
-                lbl2.Dock = DockStyle.Bottom;
+                    lbl2.Text = String.Format("{0} Mutual Friends: {1}", acc.Value.Count, String.Join(", ", acc.Value));
+                    lbl2.Dock = DockStyle.Bottom;
 
-                panel.Controls.Add(lbl1);
-                panel.Controls.Add(lbl2);
-                flowLayoutPanel1.Controls.Add(panel);
+                    panel.Controls.Add(lbl1);
+                    panel.Controls.Add(lbl2);
+                    flowLayoutPanel1.Controls.Add(panel);
+                }
             }
         }
         private void showExploreFriend(List<string> path)
