@@ -162,7 +162,7 @@ namespace DarjoWarehouseProject
           }
         }
 
-        for (int i=0; i<25; i++) {
+        for (int i=0; i<account.Count(); i++) {
           if (account[i] == w) {
             w2 = i;
           }

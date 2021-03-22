@@ -135,10 +135,9 @@ namespace DarjoWarehouseProject
 
                     // display filename
                     GraphFileName.Text = Path.GetFileName(openFile.FileName);
-
-                    g = new Graph(nRelations, 0);
+                    var a = ChooseAccount.SelectedItem;
+                    g = new Graph(nRelations, 1);
                     g.fromRead(account, relations);
-                    friendRecomendationResult = g.BFSRecomendation();
 
                     v.Initialize(panelGraph);
                     if(v.Viewer.Graph != null)
@@ -193,75 +192,85 @@ namespace DarjoWarehouseProject
             openFile = null;
             v = null;
         }
-
+        
         private void submit_Click(object sender, EventArgs e)
         {
             List<string> path = new List<string>(new string[] { "A", "B", "C", "F", "H" });
 
-            if(ChooseAccount.Items.Contains("Choose Graph First")) // graph didn't chosen
+            showExploreFriend(path);
+        }
+
+        private void showFriendRec(string algo)
+        {
+
+            if (algo=="BFS")
+            {
+                friendRecomendationResult = g.BFSRecomendation();
+            }
+            else
+            {
+
+            }
+
+            flowLayoutPanel1.Controls.Clear();
+
+            foreach (var acc in friendRecomendationResult)
+            {
+                Panel panel = new Panel();
+                Label lbl1 = new Label();
+                Label lbl2 = new Label();
+
+                Font font = new Font("Nirmala UI", 8, FontStyle.Regular);
+                panel.BackColor = Color.FromArgb(24, 30, 54);
+                panel.Font = font;
+                panel.ForeColor = Color.FromArgb(0, 126, 249);
+                panel.MinimumSize = new Size(195, 50);
+                panel.AutoSize = true;
+                panel.Padding = new Padding(5, 5, 5, 5);
+
+                lbl1.Text = acc.Key;
+                lbl1.Dock = DockStyle.Top;
+
+                lbl2.Text = String.Format("{0} Mutual Friends: {1}", acc.Value.Count, String.Join(", ", acc.Value));
+                lbl2.Dock = DockStyle.Bottom;
+
+                panel.Controls.Add(lbl1);
+                panel.Controls.Add(lbl2);
+                flowLayoutPanel1.Controls.Add(panel);
+            }
+        }
+        private void showExploreFriend(List<string> path)
+        {
+            if (ChooseAccount.Items.Contains("Choose Graph First")) // graph didn't chosen
             {
                 MessageBox.Show("Choose Graph First", "Graph Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }else if(ChooseAccount.SelectedItem == null) // account didn't chosen
+            }
+            else if (ChooseAccount.SelectedItem == null) // account didn't chosen
             {
                 MessageBox.Show("Choose Account First", "Account Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (explorefriend.SelectedItem == null) // friend to explore didn't chosen
             {
                 MessageBox.Show("Choose Friend You Want to Explore First", "Friends Want to Explore Not Found ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }else if (!radioButtonBFS.Checked && !radioButtonDFS.Checked) // algorithm didn't chosen
-            {
-                MessageBox.Show("Choose Algorithm First (BFS/DFS)", "Algorithm Not Found ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else // visualize path and show result
             {
-                flowLayoutPanel1.Controls.Clear();
-
                 if (v.Viewer.Graph != null) // if graph had chosen
                 {
                     v.VisualizePath(account, relations, path);
                 }
-
-                foreach (var acc in path)
+                panelExplore.Visible = true;
+                richTextBoxExplore.Text = "A->B->C fafifuwasweswos degree";
+                using (Graphics g = CreateGraphics())
                 {
-                    Panel panel = new Panel();
-                    //Label lbl1 = new Label();
-                    Label lbl2 = new Label();
-                    RichTextBox t1 = new RichTextBox();
-
-                    Font font = new Font("Nirmala UI", 8, FontStyle.Regular);
-                    panel.BackColor = Color.FromArgb(24, 30, 54);
-                    panel.Font = font;
-                    panel.ForeColor = Color.FromArgb(0, 126, 249);
-                    panel.MinimumSize = new Size(195, 50);
-                    panel.AutoSize = true;
-                    panel.Padding = new Padding(5, 5, 5, 5);
-
-                    //lbl1.Text = "B(A->C->B ->D->, 1st Degree)";
-                    //lbl1.Dock = DockStyle.Top;
-                    t1.ReadOnly = true;
-                    t1.Text = "B(A->C->B->D->F->G->I, 1st Degree)";
-                    t1.Dock = DockStyle.Top;
-                    t1.Width = 195;
-                    using (Graphics g = CreateGraphics())
-                    {
-                        t1.Height = (int)g.MeasureString(t1.Text, t1.Font, t1.Width).Height + 5;
-                    }
-                    t1.BackColor = Color.FromArgb(24, 30, 54);
-                    t1.BorderStyle = BorderStyle.None;
-                    t1.Font = font;
-                    t1.ForeColor = Color.FromArgb(0, 126, 249);
-                    t1.Cursor = Cursors.Arrow;
-
-                    lbl2.Text = "A";
-                    lbl2.Dock = DockStyle.Bottom;
-
-                    panel.Controls.Add(t1);
-                    //panel.Controls.Add(lbl1);
-                    panel.Controls.Add(lbl2);
-                    flowLayoutPanel1.Controls.Add(panel);
+                    richTextBoxExplore.Height = (int)g.MeasureString(richTextBoxExplore.Text, richTextBoxExplore.Font, richTextBoxExplore.Width).Height + 5;
                 }
-                path = null;
             }
+        }
+
+        private void radioButtonBFS_CheckedChanged(object sender, EventArgs e)
+        {
+            showFriendRec("BFS");
         }
     }
 }

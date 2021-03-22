@@ -54,6 +54,10 @@ namespace DarjoWarehouseProject
             this.panelGraph = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panelExplore = new System.Windows.Forms.Panel();
+            this.richTextBoxExplore = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -62,6 +66,8 @@ namespace DarjoWarehouseProject
             this.bfsbfspanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panelExplore.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -272,6 +278,7 @@ namespace DarjoWarehouseProject
             this.radioButtonBFS.TabStop = true;
             this.radioButtonBFS.Text = "BFS";
             this.radioButtonBFS.UseVisualStyleBackColor = true;
+            this.radioButtonBFS.CheckedChanged += new System.EventHandler(this.radioButtonBFS_CheckedChanged);
             // 
             // radioButtonDFS
             // 
@@ -291,6 +298,7 @@ namespace DarjoWarehouseProject
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.flowLayoutPanel1);
             this.panel3.Controls.Add(this.panelGraph);
@@ -337,7 +345,7 @@ namespace DarjoWarehouseProject
             this.flowLayoutPanel1.Location = new System.Drawing.Point(616, 48);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 365);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 227);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // panelGraph
@@ -360,6 +368,60 @@ namespace DarjoWarehouseProject
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(30, 413);
             this.panel4.TabIndex = 16;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.panelExplore);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.panel6.Location = new System.Drawing.Point(616, 274);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(196, 139);
+            this.panel6.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 23);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Explore Friend";
+            // 
+            // panelExplore
+            // 
+            this.panelExplore.AutoSize = true;
+            this.panelExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panelExplore.Controls.Add(this.richTextBoxExplore);
+            this.panelExplore.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.panelExplore.Location = new System.Drawing.Point(2, 30);
+            this.panelExplore.MaximumSize = new System.Drawing.Size(195, 109);
+            this.panelExplore.MinimumSize = new System.Drawing.Size(195, 25);
+            this.panelExplore.Name = "panelExplore";
+            this.panelExplore.Padding = new System.Windows.Forms.Padding(5);
+            this.panelExplore.Size = new System.Drawing.Size(195, 35);
+            this.panelExplore.TabIndex = 0;
+            this.panelExplore.Visible = false;
+            // 
+            // richTextBoxExplore
+            // 
+            this.richTextBoxExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.richTextBoxExplore.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxExplore.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.richTextBoxExplore.Dock = System.Windows.Forms.DockStyle.Top;
+            this.richTextBoxExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.richTextBoxExplore.Location = new System.Drawing.Point(5, 5);
+            this.richTextBoxExplore.MaximumSize = new System.Drawing.Size(185, 109);
+            this.richTextBoxExplore.MinimumSize = new System.Drawing.Size(185, 25);
+            this.richTextBoxExplore.Name = "richTextBoxExplore";
+            this.richTextBoxExplore.ReadOnly = true;
+            this.richTextBoxExplore.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBoxExplore.Size = new System.Drawing.Size(185, 25);
+            this.richTextBoxExplore.TabIndex = 0;
+            this.richTextBoxExplore.Text = "";
             // 
             // Form1
             // 
@@ -393,6 +455,9 @@ namespace DarjoWarehouseProject
             this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panelExplore.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,6 +490,10 @@ namespace DarjoWarehouseProject
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panelExplore;
+        private System.Windows.Forms.RichTextBox richTextBoxExplore;
     }
 }
 
