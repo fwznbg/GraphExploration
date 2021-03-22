@@ -75,7 +75,11 @@ namespace DarjoWarehouseProject
                     StreamReader sr = new StreamReader(openFile.FileName);
                     int lineNum = 0;
                     string line = "";
-
+                    
+                    if(v.Viewer.Graph != null)
+                    {
+                        v.ClearScreen(account);
+                    }
                     account.Clear();
                     relations.Clear();
                     ChooseAccount.Items.Clear();
@@ -140,10 +144,7 @@ namespace DarjoWarehouseProject
                     g.fromRead(account, relations);
 
                     v.Initialize(panelGraph);
-                    if(v.Viewer.Graph != null)
-                    {
-                        v.ClearScreen(account);
-                    }
+                    
                     v.Start(account, relations);
                     flowLayoutPanel1.Controls.Clear();
 

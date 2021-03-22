@@ -119,6 +119,7 @@ namespace DarjoWarehouseProject
       private List<int> new_adj = new List<int>();
       private IDictionary<int, List<int>> adj_friend;
       private int selectedNode;
+      private int selectedNode2;
       private List<int> list_adj = new List<int>();
       private char[] abjad = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
         'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -156,6 +157,18 @@ namespace DarjoWarehouseProject
         }
         // sementara buat avifci
         list_adj.Add(selectedNode);
+      }
+
+      public void setAccount2(string selectedAccount2) {
+        int i = 0;
+        bool isFound = false;
+        while(i < account.Count() && !isFound) {
+          if (account[i] == selectedAccount2) {
+            selectedNode2 = i;
+            isFound = true;
+          }
+          i++;
+        }
       }
 
       public void fromRead(List<string> accountInput, List<string[]> relation) {
@@ -369,6 +382,59 @@ namespace DarjoWarehouseProject
         adj_friend = new Dictionary<int, List<int>>();
 
         return adj_friend_string;
+      }
+
+      public List<string> BFSExploreFriend() {
+        int currNode;
+        List<int> result = new List<int>();
+        List<List<int>> queue = new List<List<int>>();
+        List<int> temp = new List<int>();
+        bool isFound = false;
+        bool[] visited = new bool[V];
+        
+        for (int i=0; i<V; i++) {
+          visited[i] = false;
+        }
+        
+        temp.Add(selectedNode);
+        queue.Add(temp);
+        temp.Clear();
+
+        while (queue.Any() && !isFound) {
+          var queueFirst = queue.First();
+          currNode = queueFirst.Last();
+          visited[currNode] = true;
+
+          if (currNode == selectedNode2) {
+            isFound = true;
+            result = queueFirst;
+          }
+          else {
+            Console.WriteLine(currNode);
+
+            foreach(var toQueue in adj[currNode]) {
+              if (!visited[toQueue]) {
+                foreach(var toEachQueue in queueFirst) {
+                  temp.Add(toEachQueue);
+                }
+                temp.Add(currNode);
+                queue.Add(temp);
+              }
+            }
+          }
+          
+        }
+
+        return exploreListToString(result);
+      }
+
+      public List<string> exploreListToString(List<int> exploreListInt) {
+        List<string> toReturn = new List<string>();
+        foreach(var eachL in exploreListInt) {
+          toReturn.Add(account[eachL]);
+        }
+
+        return toReturn;
       }
     }
 
