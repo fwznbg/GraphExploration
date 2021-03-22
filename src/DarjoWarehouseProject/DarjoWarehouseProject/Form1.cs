@@ -145,7 +145,7 @@ namespace DarjoWarehouseProject
                         v.ClearScreen(account);
                     }
                     v.Start(account, relations);
-                    //flowLayoutPanel1.Controls.Clear();
+                    flowLayoutPanel1.Controls.Clear();
 
                     sr = null;
                 }
@@ -298,7 +298,7 @@ namespace DarjoWarehouseProject
 
         private void radioButtonDFS_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButtonBFS.Checked)
+            if (radioButtonDFS.Checked)
             {
                 showFriendRec("DFS");
             }
