@@ -10,41 +10,103 @@ namespace DarjoWarehouseProject
     {
         private Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
         private Microsoft.Msagl.Drawing.Graph graph;
-        public Visualizer()
+        private Panel panel;
+        public Visualizer() // visualizer's constructor
         {
             viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             graph = new Microsoft.Msagl.Drawing.Graph("graph");
         }
-        public Microsoft.Msagl.GraphViewerGdi.GViewer Viewer
+        public Microsoft.Msagl.GraphViewerGdi.GViewer Viewer //viewer getter
         {
             get { return viewer; }
         }
-        public Microsoft.Msagl.Drawing.Graph Graph
+        public Microsoft.Msagl.Drawing.Graph Graph // graph getter
         {
             get { return graph; }
         }
 
-        public void Initialize(List<string> account, List<string[]> relations, int nRelations, Panel panel)
+        public void Initialize(Panel pnl) // initialize visualizer on pnl panel
+        { 
+            panel = pnl;
+            panel.SuspendLayout();
+            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            panel.Controls.Add(viewer);
+            panel.ResumeLayout();
+        }
+        public void SetNodeColor(String node, Microsoft.Msagl.Drawing.Color color)  // set node's color
         {
+            graph.FindNode(node).Attr.FillColor = color;
+        }
+        public void StartViewer() // set viewer.Graph to graph
+        {
+            viewer.Graph = graph;
+            // set background's color
+            graph.Attr.BackgroundColor = Microsoft.Msagl.Drawing.Color.MidnightBlue;
+        }
+        public void Start(List<string> account, List<string[]> relations) // starting visulizer
+        {
+            // add every relation to graph
             foreach (var r in relations)
             {
                 graph.AddEdge(r[0], r[1]);
             }
 
+            // coloring every nodes
             foreach (var n in account)
             {
-                graph.FindNode(n).Attr.FillColor = Microsoft.Msagl.Drawing.Color.White;
+                Microsoft.Msagl.Drawing.Color lightslategray = Microsoft.Msagl.Drawing.Color.LightSlateGray;
+                SetNodeColor(n, lightslategray);
+            }
+            StartViewer();
+        }
+        public void ClearScreen(List<string> account) // clear visualizer (back to initialize-like state)
+        {
+            // remove every node
+            foreach (var n in account)
+            {
+                Microsoft.Msagl.Drawing.Node node = graph.FindNode(n);
+                graph.RemoveNode(node);
+;            }
+            //set viewer's graph to null
+            viewer.Graph = null;
+        }
+
+        public void VisualizePath(List<string> account, List<string[]> relations, List<string> Path) // visualize path on graph
+        {
+            ClearScreen(account);   // clear screen before visualize
+
+            // add every relations to graph
+            foreach (var r in relations)
+            {
+                bool isDestination = (Path.IndexOf(r[1]) - Path.IndexOf(r[0]) == 1);
+
+                // if relation is the destionation 
+                if (Path.Contains(r[0]) && Path.Contains(r[1]) && isDestination)
+                {
+                    graph.AddEdge(r[0], r[1]).Attr.Color = Microsoft.Msagl.Drawing.Color.White;
+                }
+                else
+                {
+                    graph.AddEdge(r[0], r[1]);
+                }
             }
 
-            viewer.Graph = graph;
-            graph.Attr.BackgroundColor = Microsoft.Msagl.Drawing.Color.MidnightBlue;
-            //graph.Attr.Border = 0;
-
-            panel.SuspendLayout();
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            panel.Controls.Add(viewer);
-            panel.ResumeLayout();
-
+            // coloring every nodes
+            foreach (var n in account)
+            {
+                // if path get trough the node, set node's color white
+                if (Path.Contains(n))
+                {
+                    Microsoft.Msagl.Drawing.Color white = Microsoft.Msagl.Drawing.Color.White;
+                    SetNodeColor(n, white);
+                }
+                else
+                {
+                    Microsoft.Msagl.Drawing.Color lightslategray = Microsoft.Msagl.Drawing.Color.LightSlateGray;
+                    SetNodeColor(n, lightslategray);
+                }
+            }
+            StartViewer();
         }
     }
 
