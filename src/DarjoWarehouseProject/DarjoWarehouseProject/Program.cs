@@ -321,8 +321,8 @@ namespace DarjoWarehouseProject
           currNode = queue.First();
           visited[currNode] = true;
 
-          // jalur bfs
-          Console.WriteLine(currNode);
+          // jalur bfs debug
+          // Console.WriteLine(currNode);
 
           foreach(var toQueue in adj[currNode]) {
             if (!visited[toQueue] && !(queue.Contains(toQueue))) {
@@ -354,14 +354,14 @@ namespace DarjoWarehouseProject
           }
         }
 
-        // print friend recommendation
-        foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
-          Console.WriteLine("Key = {0}", abjad[kvp.Key]);
-          foreach(var item in kvp.Value) {
-            Console.WriteLine("  Value = {0}",  abjad[item]);
-          }
-          Console.WriteLine();
-        }
+        // print friend recommendation debug
+        // foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
+        //   Console.WriteLine("Key = {0}", abjad[kvp.Key]);
+        //   foreach(var item in kvp.Value) {
+        //     Console.WriteLine("  Value = {0}",  abjad[item]);
+        //   }
+        //   Console.WriteLine();
+        // }
 
         return adjFriendToString();
       }
@@ -398,7 +398,6 @@ namespace DarjoWarehouseProject
         
         temp.Add(selectedNode);
         queue.Add(temp);
-        temp.Clear();
 
         while (queue.Any() && !isFound) {
           currNode = queue.First().Last();
@@ -409,18 +408,20 @@ namespace DarjoWarehouseProject
             result = queue.First();
           }
           else {
-            Console.WriteLine(currNode);
-
+            //debug
+            //Console.WriteLine(currNode);
             foreach(var toQueue in adj[currNode]) {
               if (!visited[toQueue]) {
+                List<int> temp2 = new List<int>();
                 foreach(var toEachQueue in queue.First()) {
-                  temp.Add(toEachQueue);
+                  temp2.Add(toEachQueue);
                 }
-                temp.Add(currNode);
-                queue.Add(temp);
-                temp.Clear();
+                temp2.Add(toQueue);
+                queue.Add(temp2);
               }
             }
+            
+            queue.RemoveAt(0);
           }
           
         }
