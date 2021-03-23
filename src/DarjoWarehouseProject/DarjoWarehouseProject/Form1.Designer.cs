@@ -179,6 +179,7 @@ namespace DarjoWarehouseProject
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.button1.Location = new System.Drawing.Point(0, 36);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.MinimumSize = new System.Drawing.Size(116, 41);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 41);
             this.button1.TabIndex = 3;
@@ -439,7 +440,10 @@ namespace DarjoWarehouseProject
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.panel1);
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1100, 661);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

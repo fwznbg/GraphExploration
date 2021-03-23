@@ -174,6 +174,7 @@ namespace DarjoWarehouseProject
             radioButtonBFS.Checked = false;
             radioButtonDFS.Checked = false;
 
+            panelExplore.Visible = false;
             flowLayoutPanel1.Controls.Clear();
             // clear "Explore Friends With" dropdown
             explorefriend.Items.Clear();
@@ -185,6 +186,22 @@ namespace DarjoWarehouseProject
             {
                 if (item.ToString() == chosenAcc) continue;
                 explorefriend.Items.Add(item);
+            }
+
+            foreach(var r in relations)
+            {
+
+                if (r.Contains(chosenAcc))
+                {
+                    if(r[0] == chosenAcc)
+                    {
+                        explorefriend.Items.Remove(r[1]);
+                    }
+                    else
+                    {
+                        explorefriend.Items.Remove(r[0]);
+                    }
+                }
             }
             g.setAccount(ChooseAccount.SelectedItem.ToString());
         }
@@ -267,6 +284,13 @@ namespace DarjoWarehouseProject
 
                     // set index based on mutuals
                     flowLayoutPanel1.Controls.SetChildIndex(panel, mutualSize.IndexOf(nMutuals));
+
+                    if (explorefriend.Items.Contains(acc.Key)) explorefriend.Items.Remove(acc.Key);
+                    foreach(var moot in acc.Value)
+                    {
+                        if (explorefriend.Items.Contains(moot)) explorefriend.Items.Remove(moot);
+                    }
+                    if (explorefriend.Items == null) explorefriend.Items.Add("No Account Can Be Explored");
                 }
             }
         }
@@ -286,6 +310,9 @@ namespace DarjoWarehouseProject
             } else if (!(radioButtonBFS.Checked || radioButtonDFS.Checked)) 
             {
                 MessageBox.Show("Choose Algorithm First", "Algorithm Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }else if(explorefriend.SelectedItem.ToString() == "No Account Can Be Explored")
+            {
+                MessageBox.Show("No Account Can Be Explored", "Algorithm Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else // visualize path and show result
             {
