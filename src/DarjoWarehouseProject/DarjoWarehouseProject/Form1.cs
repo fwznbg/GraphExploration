@@ -282,7 +282,10 @@ namespace DarjoWarehouseProject
             }
             else if (explorefriend.SelectedItem == null) // friend to explore didn't chosen
             {
-                MessageBox.Show("Choose Friend You Want to Explore First", "Friends Want to Explore Not Found ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Choose Friend You Want to Explore First", "Friends Want to Explore Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else if (!(radioButtonBFS.Checked || radioButtonDFS.Checked)) 
+            {
+                MessageBox.Show("Choose Algorithm First", "Algorithm Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else // visualize path and show result
             {

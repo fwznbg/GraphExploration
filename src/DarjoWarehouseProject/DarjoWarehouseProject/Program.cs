@@ -78,7 +78,7 @@ namespace DarjoWarehouseProject
             // add every relations to graph
             foreach (var r in relations)
             {
-                bool isDestination = (Path.IndexOf(r[1]) - Path.IndexOf(r[0]) == 1);
+                bool isDestination = (Path.IndexOf(r[1]) - Path.IndexOf(r[0]) == 1) || (Path.IndexOf(r[1]) - Path.IndexOf(r[0]) == -1);
 
                 // if relation is the destionation 
                 if (Path.Contains(r[0]) && Path.Contains(r[1]) && isDestination)
@@ -451,33 +451,6 @@ namespace DarjoWarehouseProject
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            //sementara komen dulu
-            // Graph g = new Graph(8, 0);
-
-            // g.addEdge('A', 'B');
-            // g.addEdge('A', 'C');
-            // g.addEdge('A', 'D');
-
-            // g.addEdge('B', 'C');
-            // g.addEdge('B', 'E');
-            // g.addEdge('B', 'F');
-
-            // g.addEdge('C', 'F');
-            // g.addEdge('C', 'G');
-
-            // g.addEdge('D', 'G');
-            // g.addEdge('D', 'F');
-
-            // g.addEdge('E', 'H');
-            // g.addEdge('E', 'F');
-
-            // g.addEdge('F', 'H');
-            
-            // // Console.WriteLine("DFS ni coy");
-            // // g.DFS_Two();
-
-            // Console.WriteLine("BFS ni coy");
-            // g.BFSRecomendation();
         }
     }
 }

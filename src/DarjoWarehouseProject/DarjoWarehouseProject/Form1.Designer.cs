@@ -47,6 +47,10 @@ namespace DarjoWarehouseProject
             this.radioButtonBFS = new System.Windows.Forms.RadioButton();
             this.radioButtonDFS = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panelExplore = new System.Windows.Forms.Panel();
+            this.richTextBoxExplore = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,10 +58,6 @@ namespace DarjoWarehouseProject
             this.panelGraph = new System.Windows.Forms.Panel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panelExplore = new System.Windows.Forms.Panel();
-            this.richTextBoxExplore = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,9 +65,9 @@ namespace DarjoWarehouseProject
             this.panel12.SuspendLayout();
             this.bfsbfspanel.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panelExplore.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -310,6 +310,60 @@ namespace DarjoWarehouseProject
             this.panel3.Size = new System.Drawing.Size(843, 413);
             this.panel3.TabIndex = 15;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.panelExplore);
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.panel6.Location = new System.Drawing.Point(616, 274);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(196, 139);
+            this.panel6.TabIndex = 2;
+            // 
+            // panelExplore
+            // 
+            this.panelExplore.AutoSize = true;
+            this.panelExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panelExplore.Controls.Add(this.richTextBoxExplore);
+            this.panelExplore.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.panelExplore.Location = new System.Drawing.Point(2, 30);
+            this.panelExplore.MaximumSize = new System.Drawing.Size(195, 109);
+            this.panelExplore.MinimumSize = new System.Drawing.Size(195, 25);
+            this.panelExplore.Name = "panelExplore";
+            this.panelExplore.Padding = new System.Windows.Forms.Padding(5);
+            this.panelExplore.Size = new System.Drawing.Size(195, 35);
+            this.panelExplore.TabIndex = 0;
+            this.panelExplore.Visible = false;
+            // 
+            // richTextBoxExplore
+            // 
+            this.richTextBoxExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.richTextBoxExplore.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxExplore.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.richTextBoxExplore.Dock = System.Windows.Forms.DockStyle.Top;
+            this.richTextBoxExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.richTextBoxExplore.Location = new System.Drawing.Point(5, 5);
+            this.richTextBoxExplore.MaximumSize = new System.Drawing.Size(185, 109);
+            this.richTextBoxExplore.MinimumSize = new System.Drawing.Size(185, 25);
+            this.richTextBoxExplore.Name = "richTextBoxExplore";
+            this.richTextBoxExplore.ReadOnly = true;
+            this.richTextBoxExplore.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBoxExplore.Size = new System.Drawing.Size(185, 25);
+            this.richTextBoxExplore.TabIndex = 0;
+            this.richTextBoxExplore.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 23);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Explore Friend";
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
@@ -371,60 +425,6 @@ namespace DarjoWarehouseProject
             this.panel4.Size = new System.Drawing.Size(30, 413);
             this.panel4.TabIndex = 16;
             // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.panel6.Controls.Add(this.panelExplore);
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.panel6.Location = new System.Drawing.Point(616, 274);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(196, 139);
-            this.panel6.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 23);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Explore Friend";
-            // 
-            // panelExplore
-            // 
-            this.panelExplore.AutoSize = true;
-            this.panelExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.panelExplore.Controls.Add(this.richTextBoxExplore);
-            this.panelExplore.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.panelExplore.Location = new System.Drawing.Point(2, 30);
-            this.panelExplore.MaximumSize = new System.Drawing.Size(195, 109);
-            this.panelExplore.MinimumSize = new System.Drawing.Size(195, 25);
-            this.panelExplore.Name = "panelExplore";
-            this.panelExplore.Padding = new System.Windows.Forms.Padding(5);
-            this.panelExplore.Size = new System.Drawing.Size(195, 35);
-            this.panelExplore.TabIndex = 0;
-            this.panelExplore.Visible = false;
-            // 
-            // richTextBoxExplore
-            // 
-            this.richTextBoxExplore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
-            this.richTextBoxExplore.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxExplore.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.richTextBoxExplore.Dock = System.Windows.Forms.DockStyle.Top;
-            this.richTextBoxExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.richTextBoxExplore.Location = new System.Drawing.Point(5, 5);
-            this.richTextBoxExplore.MaximumSize = new System.Drawing.Size(185, 109);
-            this.richTextBoxExplore.MinimumSize = new System.Drawing.Size(185, 25);
-            this.richTextBoxExplore.Name = "richTextBoxExplore";
-            this.richTextBoxExplore.ReadOnly = true;
-            this.richTextBoxExplore.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBoxExplore.Size = new System.Drawing.Size(185, 25);
-            this.richTextBoxExplore.TabIndex = 0;
-            this.richTextBoxExplore.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -455,11 +455,11 @@ namespace DarjoWarehouseProject
             this.bfsbfspanel.ResumeLayout(false);
             this.bfsbfspanel.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panelExplore.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
