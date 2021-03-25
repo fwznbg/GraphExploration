@@ -324,10 +324,10 @@ namespace DarjoWarehouseProject
             this.panel6.Controls.Add(this.label4);
             this.panel6.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.panel6.Location = new System.Drawing.Point(601, 274);
+            this.panel6.Location = new System.Drawing.Point(594, 274);
             this.panel6.MinimumSize = new System.Drawing.Size(196, 139);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(211, 139);
+            this.panel6.Size = new System.Drawing.Size(218, 139);
             this.panel6.TabIndex = 2;
             // 
             // panelExplore
@@ -338,11 +338,11 @@ namespace DarjoWarehouseProject
             this.panelExplore.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.panelExplore.Location = new System.Drawing.Point(2, 30);
-            this.panelExplore.MaximumSize = new System.Drawing.Size(195, 109);
+            this.panelExplore.MaximumSize = new System.Drawing.Size(200, 109);
             this.panelExplore.MinimumSize = new System.Drawing.Size(195, 25);
             this.panelExplore.Name = "panelExplore";
             this.panelExplore.Padding = new System.Windows.Forms.Padding(5);
-            this.panelExplore.Size = new System.Drawing.Size(195, 35);
+            this.panelExplore.Size = new System.Drawing.Size(200, 35);
             this.panelExplore.TabIndex = 0;
             this.panelExplore.Visible = false;
             // 
@@ -379,10 +379,10 @@ namespace DarjoWarehouseProject
             this.panel5.Controls.Add(this.label1);
             this.panel5.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.panel5.Location = new System.Drawing.Point(601, 0);
+            this.panel5.Location = new System.Drawing.Point(594, 0);
             this.panel5.MinimumSize = new System.Drawing.Size(196, 48);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(211, 48);
+            this.panel5.Size = new System.Drawing.Size(218, 48);
             this.panel5.TabIndex = 0;
             // 
             // label2
@@ -407,11 +407,11 @@ namespace DarjoWarehouseProject
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(601, 48);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(594, 48);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(225, 227);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(240, 227);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(247, 227);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // panelGraph
@@ -419,9 +419,9 @@ namespace DarjoWarehouseProject
             this.panelGraph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
             this.panelGraph.Location = new System.Drawing.Point(0, 0);
             this.panelGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panelGraph.MinimumSize = new System.Drawing.Size(600, 413);
+            this.panelGraph.MinimumSize = new System.Drawing.Size(595, 413);
             this.panelGraph.Name = "panelGraph";
-            this.panelGraph.Size = new System.Drawing.Size(603, 413);
+            this.panelGraph.Size = new System.Drawing.Size(595, 413);
             this.panelGraph.TabIndex = 2;
             // 
             // openFileDialog1
