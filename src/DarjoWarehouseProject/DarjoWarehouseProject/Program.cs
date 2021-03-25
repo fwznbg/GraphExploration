@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DarjoWarehouseProject
@@ -117,16 +116,10 @@ namespace DarjoWarehouseProject
       private int V;
       private List<int>[] adj;
       private List<int> new_adj = new List<int>();
-      private IDictionary<int, List<int>> adj_friend;
+      public IDictionary<int, List<int>> adj_friend;
       private int selectedNode;
       private int selectedNode2;
       private List<int> list_adj = new List<int>();
-      private char[] abjad = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-      };
-      private IDictionary<int, char> abjadToInt = new Dictionary<int, char>(){
-        {0, 'A'}
-      };
       List<string> account = new List<string>();
 
       public Graph(int v) {
@@ -139,11 +132,6 @@ namespace DarjoWarehouseProject
         for (int i = 0; i < v; ++i)
           adj[i] = new List<int>();
       }
- 
-    // void addEdge(int v, int w) {
-    //   adj[v].Add(w);
-    //   adj[w].Add(v);
-    // }
 
       public void setAccount(string selectedAccount1) {
         int i = 0;
@@ -200,30 +188,10 @@ namespace DarjoWarehouseProject
         adj[w2].Add(v2);
       }
 
-      public void addEdge(char v, char w) {
-        int v2 = 0;
-        int w2 = 0;
-
-        for (int i=0; i<25; i++) {
-          if (abjad[i] == v) {
-            v2 = i;
-          }
-        }
-
-        for (int i=0; i<25; i++) {
-          if (abjad[i] == w) {
-            w2 = i;
-          }
-        }
-
-        adj[v2].Add(w2);
-        adj[w2].Add(v2);
-      }
-
       public void DFSUtil(int selectedNode, int v, bool[] visited) {
         // jalur dfs masih salah
         // jalur nya tetep di selectedNode berbeda
-        Console.WriteLine(v);
+        //Console.WriteLine(v);
         visited[v] = true;
 
         foreach(int i in adj[v]) {
@@ -246,66 +214,60 @@ namespace DarjoWarehouseProject
             DFSUtil(selectedNode, i, visited);
       }
 
-      public void DFS_Two() {
-        DFS();
-        Console.WriteLine("List ADJ");
-        foreach (var item in list_adj.Distinct().ToList()) {
-          Console.WriteLine("Value = {0}", item);
-        }
+        public IDictionary<string, List<string>> DFSFriendRecommendation()
+        {
+            DFS();
 
-        bool[] visited = new bool[V];
-
-        foreach (var item in list_adj) {
-          foreach (var item2 in adj[item])
-            new_adj.Add(item2);
-        } 
-        
-        FriendRecommendation();
-      }
-
-      public void FriendRecommendation() {
-        List<int> rmv_duplicate = new_adj.Distinct().ToList();
-        List<int> rmv_duplicate2 = new List<int>();
-
-        int counter = 0;
-        while (counter < list_adj.Count) {
-          if (rmv_duplicate.Contains(list_adj[counter])) {
-            rmv_duplicate.Remove(list_adj[counter]);
-          }
-          counter++;
-        }
-
-        Console.WriteLine("List Recom Friend");
-        for (int i=0; i<rmv_duplicate.Count; i++) {
-          Console.WriteLine("Value = {0}", rmv_duplicate[i]);
-        }
-
-        list_adj.Remove(selectedNode);
-
-        foreach (var item in rmv_duplicate) {
-          foreach (var item2 in list_adj) {
-            if (adj[item].Contains(item2)) {
-              rmv_duplicate2.Add(item2);
+            foreach (var item in list_adj)
+            {
+                foreach (var item2 in adj[item])
+                    new_adj.Add(item2);
             }
-          }
 
-          adj_friend.Add(item, rmv_duplicate2.Distinct().ToList());
-          rmv_duplicate2 = new List<int>();
+            return finishProccess();
         }
 
-        foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
-          Console.WriteLine("Key = {0}", abjad[kvp.Key]);
-          foreach(var item in kvp.Value) {
-            Console.WriteLine("  Value = {0}",  abjad[item]);
-          }
-          Console.WriteLine();
+        public IDictionary<string, List<string>> finishProccess()
+        {
+            List<int> rmv_duplicate = new_adj.Distinct().ToList();
+            List<int> rmv_duplicate2 = new List<int>();
+
+            int counter = 0;
+            while (counter < list_adj.Count)
+            {
+                if (rmv_duplicate.Contains(list_adj[counter]))
+                {
+                    rmv_duplicate.Remove(list_adj[counter]);
+                }
+                counter++;
+            }
+
+            list_adj.Remove(selectedNode);
+
+            foreach (var item in rmv_duplicate)
+            {
+                foreach (var item2 in list_adj)
+                {
+                    if (adj[item].Contains(item2))
+                    {
+                        rmv_duplicate2.Add(item2);
+                    }
+                }
+
+                adj_friend.Add(item, rmv_duplicate2.Distinct().ToList());
+                rmv_duplicate2 = new List<int>();
+            }
+
+            IDictionary<string, List<string>> adjString = adjFriendToString();
+            adjString.Remove(account[selectedNode]);
+
+            new_adj = new List<int>();
+            list_adj = new List<int>();
+
+            return adjString;
         }
 
-        // flush adj friend biar bisa nyari recomendation lagi
-        // your code heree
-      }
-
-      public IDictionary<string, List<string>> BFSRecomendation() {
+        public IDictionary<string, List<string>> BFSRecomendation() {
         int currNode;
         List<int> queue = new List<int>();
         bool[] visited = new bool[V];
@@ -353,15 +315,6 @@ namespace DarjoWarehouseProject
             }
           }
         }
-
-        // print friend recommendation debug
-        // foreach (KeyValuePair<int, List<int>> kvp in adj_friend) {
-        //   Console.WriteLine("Key = {0}", abjad[kvp.Key]);
-        //   foreach(var item in kvp.Value) {
-        //     Console.WriteLine("  Value = {0}",  abjad[item]);
-        //   }
-        //   Console.WriteLine();
-        // }
 
         return adjFriendToString();
       }
