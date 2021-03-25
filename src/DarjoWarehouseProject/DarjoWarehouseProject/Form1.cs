@@ -286,7 +286,7 @@ namespace DarjoWarehouseProject
                     {
                         if (explorefriend.Items.Contains(moot)) explorefriend.Items.Remove(moot);
                     }
-                    if (explorefriend.Items == null) explorefriend.Items.Add("No Account Can Be Explored");
+                    if (explorefriend.Items.Count == 0) explorefriend.Items.Add("No Account Can Be Explored");
                 }
             }
         }
@@ -317,7 +317,7 @@ namespace DarjoWarehouseProject
                     v.VisualizePath(account, relations, path);
                 }
                 panelExplore.Visible = true;
-                String teks = String.Join("->", path);
+                String teks = String.Join("→", path);
                 int degree = path.Count() -  2;
                 if(degree < 0)
                 {
