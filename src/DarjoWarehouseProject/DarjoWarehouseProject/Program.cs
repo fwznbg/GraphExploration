@@ -159,7 +159,116 @@ namespace DarjoWarehouseProject
         }
       }
 
-      public void fromRead(List<string> accountInput, List<string[]> relation) {
+        public bool isDeadEnd(int currentNode, bool[] visited)
+        {
+            bool isDead = true;
+
+            foreach (var item in adj[currentNode])
+            {
+                if (!visited[item])
+                {
+                    isDead = false;
+                    break;
+                }
+            }
+
+            return isDead;
+        }
+
+        public List<string> DFSExploreFriend()
+        {
+            int currentNode;
+            Stack<List<int>> stackList = new Stack<List<int>>();
+            Stack<int> stack = new Stack<int>();
+            List<List<int>> liveNode = new List<List<int>>();
+            bool isFound = false;
+            bool[] visited = new bool[V];
+
+            for (int i = 0; i < V; i++)
+            {
+                visited[i] = false;
+            }
+
+            stack.Push(selectedNode);
+
+            while (!isFound)
+            {
+                currentNode = stack.Peek();
+                Console.WriteLine("Current Node: {0}", account[currentNode]);
+
+                visited[currentNode] = true;
+
+                if (currentNode == selectedNode2)
+                {
+                    isFound = true;
+                }
+                else
+                {
+                    if (isDeadEnd(currentNode, visited))
+                    {
+                        Console.WriteLine("Dead End");
+                        // stack.Clear();
+                        stack.Pop();
+                        stack.Pop();
+                        // liveNode.RemoveAt(0);
+
+                        // for (int i=0; i<liveNode.Count; i++) {
+                        //   for (int j=0; j<liveNode[i].Count; j++) {
+                        //     // stack.Push(liveNode[i][j]);
+                        //     Console.Write(" {0} ", account[liveNode[i][j]]);
+                        //   }
+                        //   Console.WriteLine();
+                        // }
+
+                        // Console.WriteLine("Current stack: {0}", account[stack.Peek()]);
+                    }
+                    else
+                    {
+                        List<int> temp = new List<int>();
+
+                        foreach (var item in adj[currentNode])
+                        {
+                            if (!visited[item])
+                            {
+                                temp.Add(item);
+                                temp.Add(currentNode);
+                            }
+                            stackList.Push(temp);
+                            liveNode.Add(temp);
+                        }
+
+                        // Console.WriteLine("Temp var: ");
+                        // foreach (var item in temp) {
+                        //   Console.Write("{0}, ", account[item]);
+                        // }
+
+                        Console.WriteLine();
+
+                        stack.Push(stackList.Pop().First());
+                        stackList.Pop();
+                        temp = new List<int>();
+
+                    }
+                }
+
+                // liveNode = new List<List<int>>();
+            }
+
+            List<string> result = new List<string>();
+
+            Console.WriteLine("Stack: ");
+            foreach (int item in stack)
+            {
+                Console.WriteLine(" {0} ", account[item]);
+                result.Add(account[item]);
+            }
+
+            result.Reverse();
+
+            return result;
+        }
+
+        public void fromRead(List<string> accountInput, List<string[]> relation) {
         foreach (var eachA in accountInput) {
           account.Add(eachA);
         }

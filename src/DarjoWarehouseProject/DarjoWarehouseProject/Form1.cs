@@ -221,7 +221,7 @@ namespace DarjoWarehouseProject
             }
             else
             {
-
+                xplore = g.DFSExploreFriend();
             }
 
             showExploreFriend(xplore);
