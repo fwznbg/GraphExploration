@@ -338,11 +338,11 @@ namespace DarjoWarehouseProject
             this.panelExplore.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelExplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.panelExplore.Location = new System.Drawing.Point(2, 30);
-            this.panelExplore.MaximumSize = new System.Drawing.Size(200, 109);
+            this.panelExplore.MaximumSize = new System.Drawing.Size(15, 109);
             this.panelExplore.MinimumSize = new System.Drawing.Size(195, 25);
             this.panelExplore.Name = "panelExplore";
             this.panelExplore.Padding = new System.Windows.Forms.Padding(5);
-            this.panelExplore.Size = new System.Drawing.Size(200, 35);
+            this.panelExplore.Size = new System.Drawing.Size(195, 35);
             this.panelExplore.TabIndex = 0;
             this.panelExplore.Visible = false;
             // 

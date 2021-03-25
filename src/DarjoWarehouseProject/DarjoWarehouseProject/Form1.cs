@@ -264,9 +264,10 @@ namespace DarjoWarehouseProject
                     panel.BackColor = Color.FromArgb(24, 30, 54);
                     panel.Font = font;
                     panel.ForeColor = Color.FromArgb(0, 126, 249);
-                    panel.MinimumSize = new Size(195, 50);
+                    panel.MinimumSize = new Size(180, 50);
                     panel.AutoSize = true;
                     panel.Padding = new Padding(5, 5, 5, 5);
+                    panel.Dock = DockStyle.Fill;
 
                     lbl1.Text = acc.Key;
                     lbl1.Dock = DockStyle.Top;
