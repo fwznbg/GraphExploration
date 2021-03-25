@@ -77,6 +77,7 @@ namespace DarjoWarehouseProject
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.MinimumSize = new System.Drawing.Size(209, 661);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(209, 661);
             this.panel1.TabIndex = 1;
@@ -218,6 +219,7 @@ namespace DarjoWarehouseProject
             this.submit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.submit.Location = new System.Drawing.Point(91, 60);
             this.submit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.submit.MinimumSize = new System.Drawing.Size(91, 38);
             this.submit.Name = "submit";
             this.submit.Size = new System.Drawing.Size(91, 38);
             this.submit.TabIndex = 4;
@@ -232,6 +234,7 @@ namespace DarjoWarehouseProject
             this.xplore.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xplore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.xplore.Location = new System.Drawing.Point(0, 0);
+            this.xplore.MinimumSize = new System.Drawing.Size(182, 23);
             this.xplore.Name = "xplore";
             this.xplore.Size = new System.Drawing.Size(182, 23);
             this.xplore.TabIndex = 2;
@@ -249,6 +252,7 @@ namespace DarjoWarehouseProject
             "Choose Account First"});
             this.explorefriend.Location = new System.Drawing.Point(4, 26);
             this.explorefriend.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.explorefriend.MinimumSize = new System.Drawing.Size(176, 0);
             this.explorefriend.Name = "explorefriend";
             this.explorefriend.Size = new System.Drawing.Size(176, 24);
             this.explorefriend.TabIndex = 2;
@@ -260,6 +264,7 @@ namespace DarjoWarehouseProject
             this.bfsbfspanel.Controls.Add(this.radioButtonDFS);
             this.bfsbfspanel.Location = new System.Drawing.Point(404, 555);
             this.bfsbfspanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bfsbfspanel.MinimumSize = new System.Drawing.Size(91, 57);
             this.bfsbfspanel.Name = "bfsbfspanel";
             this.bfsbfspanel.Size = new System.Drawing.Size(91, 57);
             this.bfsbfspanel.TabIndex = 12;
@@ -307,6 +312,7 @@ namespace DarjoWarehouseProject
             this.panel3.Controls.Add(this.panelGraph);
             this.panel3.Location = new System.Drawing.Point(246, 95);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.MinimumSize = new System.Drawing.Size(843, 413);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(843, 413);
             this.panel3.TabIndex = 15;
@@ -319,6 +325,7 @@ namespace DarjoWarehouseProject
             this.panel6.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.panel6.Location = new System.Drawing.Point(616, 274);
+            this.panel6.MinimumSize = new System.Drawing.Size(196, 139);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(196, 139);
             this.panel6.TabIndex = 2;
@@ -373,6 +380,7 @@ namespace DarjoWarehouseProject
             this.panel5.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.panel5.Location = new System.Drawing.Point(616, 0);
+            this.panel5.MinimumSize = new System.Drawing.Size(196, 48);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(196, 48);
             this.panel5.TabIndex = 0;
@@ -401,6 +409,7 @@ namespace DarjoWarehouseProject
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
             this.flowLayoutPanel1.Location = new System.Drawing.Point(616, 48);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(225, 227);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 227);
             this.flowLayoutPanel1.TabIndex = 3;
@@ -411,6 +420,7 @@ namespace DarjoWarehouseProject
             this.panelGraph.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelGraph.Location = new System.Drawing.Point(0, 0);
             this.panelGraph.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelGraph.MinimumSize = new System.Drawing.Size(616, 413);
             this.panelGraph.Name = "panelGraph";
             this.panelGraph.Size = new System.Drawing.Size(616, 413);
             this.panelGraph.TabIndex = 2;
@@ -422,6 +432,7 @@ namespace DarjoWarehouseProject
             // panel4
             // 
             this.panel4.Location = new System.Drawing.Point(1058, 95);
+            this.panel4.MinimumSize = new System.Drawing.Size(30, 413);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(30, 413);
             this.panel4.TabIndex = 16;
