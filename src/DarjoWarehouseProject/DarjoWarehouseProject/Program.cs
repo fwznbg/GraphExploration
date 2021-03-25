@@ -258,7 +258,13 @@ namespace DarjoWarehouseProject
                 rmv_duplicate2 = new List<int>();
             }
 
-            return adjFriendToString();
+            IDictionary<string, List<string>> adjString = adjFriendToString();
+            adjString.Remove(account[selectedNode]);
+
+            new_adj = new List<int>();
+            list_adj = new List<int>();
+
+            return adjString;
         }
 
         public IDictionary<string, List<string>> BFSRecomendation() {
