@@ -6,7 +6,7 @@ Aplikasi ini merupakan GUI sederhana yang dapat memodelkan beberapa fitur dari P
 * .NET
 * MSAGL Package
 ### How to?
-1. Jalankan aplikasi pada folder bin/DarjoWarehouseProject.exe
+1. Jalankan aplikasi pada folder bin/DarjoWarehouseProject.exe atau buka project pada Visual Studio dan tekan Start
 2. Pilih file (.txt) yang berisi jumlah keterhubungan node dengan node lain, dan keterhubungan node dengan node lain, dengan cara menekan choose graph pada bagian bawah layout program. Pastikan format file (.txt) seperti di bawah ini.
 ```
 13
